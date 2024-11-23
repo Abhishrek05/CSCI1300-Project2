@@ -1,3 +1,8 @@
+/*
+Player.h Pseudocode:
+This sets and gets (stores player data in these variables )
+based on the special tiles in the game, there are modifications to the specific tiles
+oasis, counseling, graveyard, hyenas, challenge*/
 #ifndef PLAYER_H
 #define PLAYER_H
 
