@@ -1,3 +1,12 @@
+/* Player.cpp Pseudocode: 
+ 1.initializes the stats
+ 2. check player stats to ensure they are the correct number and then set their values to a variable to use in this file.  
+ 3. get and set variables/ inputs        
+ 4. set up stamina, wisdom, and strength values 
+ 5. Initialize the basic values of the different traits of each character based on the route they decide to take
+ 6. Calculate all pride points for player
+ 7. print out player stats
+*/
 #include "Player.h"
 #include <iostream>
 

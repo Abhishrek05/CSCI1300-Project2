@@ -1,3 +1,19 @@
+/*
+Board.cpp Pseudocode:
+1. initialize the two boards
+2. create a function to initialize cub tiles
+A. Set up board color order/random
+B. set up the color of the tiles to corresponding actions/events
+C. // Assign the tile to the board for the specified lane
+3. Do a similar function for pride land tiles
+4. Make the position available to track
+Initialize player position
+check if player is on the tile
+initialize the tiles and make them display their traits
+ready the display board function
+make the player move function
+store player position
+ */
 #include "Board.h"
 #include <iostream>
 
