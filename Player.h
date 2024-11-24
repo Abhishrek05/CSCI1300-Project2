@@ -12,18 +12,20 @@ using namespace std;
 
 class Player {
     private:
-        string _name;
+        string _name, currentAdvisor;
         int _strength, _stamina, _wisdom, _pride_points, _age;
     public:
         Player();
         Player(string, int, int, int);
-        string getName(); 
+        string getName();
+        string getAdvisor(); 
         int getStrength();
         int getStamina();
         int getWisdom();
         int getPridePoints();
         int getAge();
         void setName(string);
+        void setAdvisor(string);
         void setStrength(int);
         void setStamina(int);
         void setWisdom(int);

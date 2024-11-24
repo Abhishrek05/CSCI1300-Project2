@@ -18,7 +18,8 @@ Player::Player() {
     _stamina = 100;
     _strength = 100;
     _wisdom = 100;
-    _pride_points = 0;
+    _pride_points = 20000; //should start with 20,000 pride points 
+    currentAdvisor = ""; //potential advisor
 }
 
 Player::Player(string name, int strength, int stamina, int wisdom) {
@@ -27,11 +28,15 @@ Player::Player(string name, int strength, int stamina, int wisdom) {
     _strength = strength;
     _stamina = stamina;
     _wisdom = wisdom;
-    _pride_points = 0;
+    _pride_points = 20000;
 }
 
 string Player::getName() {
     return _name;
+}
+
+string Player::getAdvisor() {
+    return currentAdvisor;
 }
 
 int Player::getStrength() {
@@ -56,6 +61,10 @@ int Player::getAge() {
 
 void Player::setName(string name) {
     _name = name;
+}
+
+void Player::setAdvisor(string advisor) {
+    currentAdvisor = advisor;
 }
 
 void Player::setStrength(int strength) {
@@ -87,9 +96,9 @@ void Player::trainCub(int strength, int stamina, int wisdom) {
 
 void Player::toPrideLands() {
     _pride_points = getPridePoints() + 5000;
-    _strength = getStrength() - 2000;
-    _stamina = getStamina() - 1000;
-    _wisdom = getWisdom() - 2000;
+    _strength = getStrength() + 200;
+    _stamina = getStamina() + 200;
+    _wisdom = getWisdom() + 200;
 
 }
 
