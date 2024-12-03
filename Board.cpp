@@ -84,7 +84,7 @@ void Board::initializeTiles(int player_index)
             //         temp.color = 'U'; // Purple
             //         break;
             // }
-            if(i < (total_tiles / 2)) { //first half
+            if(i < (total_tiles / 2)) { //first half (Pride Lands)
                 if(color_choice < 25) {
                     temp.color = 'R'; //graveyard
                 } else if (color_choice > 25 && color_choice <= 50) {
@@ -98,7 +98,7 @@ void Board::initializeTiles(int player_index)
                 } else {
                     cout << "balanced colors wrong" << endl;
                 }
-            } else  { //second half
+            } else  { //second half (Advisor Path)
                 if(color_choice < 25) {
                     temp.color = 'R'; //graveyard
                 } else if(color_choice > 15 && color_choice <=30) {
