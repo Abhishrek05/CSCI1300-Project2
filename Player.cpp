@@ -19,7 +19,7 @@ Player::Player() {
     _strength = 100;
     _wisdom = 100;
     _pride_points = 20000; //should start with 20,000 pride points 
-    currentAdvisor = ""; //potential advisor
+    _currentAdvisor = ""; //potential advisor
 }
 
 Player::Player(string name, int strength, int stamina, int wisdom) {
@@ -29,6 +29,7 @@ Player::Player(string name, int strength, int stamina, int wisdom) {
     _stamina = stamina;
     _wisdom = wisdom;
     _pride_points = 20000;
+    _currentAdvisor = "";
 }
 
 string Player::getName() {
@@ -36,7 +37,7 @@ string Player::getName() {
 }
 
 string Player::getAdvisor() {
-    return currentAdvisor;
+    return _currentAdvisor;
 }
 
 int Player::getStrength() {
@@ -64,7 +65,7 @@ void Player::setName(string name) {
 }
 
 void Player::setAdvisor(string advisor) {
-    currentAdvisor = advisor;
+    _currentAdvisor = advisor;
 }
 
 void Player::setStrength(int strength) {

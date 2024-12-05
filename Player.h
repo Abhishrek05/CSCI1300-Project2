@@ -12,7 +12,7 @@ using namespace std;
 
 class Player {
     private:
-        string _name, currentAdvisor;
+        string _name, _currentAdvisor;
         int _strength, _stamina, _wisdom, _pride_points, _age;
     public:
         Player();
