@@ -62,8 +62,6 @@ void printMainMenue() {
     "4. Review your Advisor (4)\n " <<
     "5. Move Forward (5)\n" <<
     "Please choose an option using the corresponding number:\n";
-    int input = 0;
-    cin >> input;
 }
 
 void displayCharacters() {
