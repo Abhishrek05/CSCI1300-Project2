@@ -5,10 +5,10 @@
 #include <ctime>
 #include "Player.h"
 #include "Board.h"
-#include "Board.cpp"
-#include "Player.cpp"
+// #include "Board.cpp"
+// #include "Player.cpp"
 #include "Game.h"
-#include "Game.cpp"
+// #include "Game.cpp"
 
 using namespace std;
 
