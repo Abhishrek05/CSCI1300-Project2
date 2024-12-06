@@ -56,6 +56,7 @@ int Game::split(string input_string, char separator, string arr[], const int ARR
 
 
 void Game::chooseCharacters(Player player[], int playerIndex){
+    displayCharacters();
     cout<<"Input the corresponding number to choose a character."<<endl;
     int input = 0;
     cin>>input;
@@ -103,7 +104,7 @@ void Game::chooseCharacters(Player player[], int playerIndex){
 }
 
 void Game::chooseAdvisor(Player player){
-    cout<<"Input the corresponding number to choose a character."<<endl;
+    cout<<"Input the corresponding number to choose an advisor."<<endl;
     int input = 0;
     cin>>input;
     
@@ -118,7 +119,20 @@ void Game::chooseAdvisor(Player player){
     player.setAdvisor(AdivsorName[input - 1]);
 
 }
-        // void displayCharacters();
+void Game::displayCharacters() {
+    ifstream file("character.txt");
+    string line;
+    int count = 0;
+    if(file.fail()) {
+        cout<<"Could not open file."<<endl;
+        return;
+    }
+    cout<<"Characters to choose from: "<<endl;
+    while(getline(file, line)) {
+        cout<<count<<" - "<<line<<endl;
+        count++;
+    }
+}
         // void selectPath();
         // void playgame();
         // void determineWinner();  

@@ -283,6 +283,7 @@ int main() {
     Game game(players, board, 0);
 
     game.chooseCharacters(players, index);
-    game.chooseAdvisor(player1);
+    players[0].printStats();
+    //game.chooseAdvisor(player1);
     return 0;
 }
