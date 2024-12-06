@@ -126,15 +126,31 @@ void chooseCharacter(Player &player) {
     }
 }
 
+void playerSetup(Player &player1, Player &player2) {
+    cout<<"Welcome to The Cirlce of Life"<<endl;
+    //Lion Selection
+    cout<<"Begin by selecting a lion"<<endl;
+    cout<<"Player 1 Selection:"<<endl;
+    displayCharacters();
+    chooseCharacter(player1);
+    cout<<"Player 2 Selection:"<<endl;
+    displayCharacters();
+    chooseCharacter(player2);
+}
+
 
 int main() {
     Player player1;
-//     srand(time(0)); //seed random number genrator
-//     Board board(2);
-//    // board.initializeBoard();
-//     board.displayBoard();
-    displayCharacters();
-    chooseCharacter(player1);
-    player1.printStats();
+    Player player2;
+    playerSetup(player1, player2);
+    srand(time(0)); //seed random number genrator
+    Board board(2);
+    
+    //Path Selection
+    cout<<"Player 1: Would you like to go straight to the pridelands (1) or train with an advisor (2)?"<<endl;
+
+    cout<<"Player 2: Would you like to go straight to the pridelands (1) or train with an advisor (2)?"<<endl;
+    board.initializeBoard();
+    board.displayBoard();
     return 0;
 }

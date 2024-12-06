@@ -84,7 +84,7 @@ void Board::initializeTiles(int player_index)
             //         temp.color = 'U'; // Purple
             //         break;
             // }
-            if(i < (total_tiles / 2)) { //first half (Pride Lands)
+            if(player_index == 0) { //first half (Pride Lands)
                 if(color_choice < 25) {
                     temp.color = 'R'; //graveyard
                 } else if (color_choice > 25 && color_choice <= 50) {
@@ -95,10 +95,8 @@ void Board::initializeTiles(int player_index)
                     temp.color = 'U';
                 } else if (color_choice > 95) {
                     temp.color = 'B';
-                } else {
-                    cout << "balanced colors wrong" << endl;
                 }
-            } else  { //second half (Advisor Path)
+            } else if(player_index == 1) { //second half (Advisor Path)
                 if(color_choice < 25) {
                     temp.color = 'R'; //graveyard
                 } else if(color_choice > 15 && color_choice <=30) {
@@ -109,8 +107,6 @@ void Board::initializeTiles(int player_index)
                     temp.color = 'U';
                 } else if(color_choice > 75) {
                     temp.color = 'B';
-                } else {
-                    cout << "you balanced it wrong" <<endl;
                 }
             }
         }
@@ -205,7 +201,7 @@ void Board::displayTile(int player_index, int pos)
         color = GREY;
     }
 
-     if (player == true)
+    if (player == true)
     {
         cout << color << "|" << (player_index + 1) << "|" << RESET;
     }
