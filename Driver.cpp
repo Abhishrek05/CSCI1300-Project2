@@ -5,6 +5,8 @@
 #include <ctime>
 #include "Player.h"
 #include "Board.h"
+#include "Board.cpp"
+#include "Player.cpp"
 
 using namespace std;
 
