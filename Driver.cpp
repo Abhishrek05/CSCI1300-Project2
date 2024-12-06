@@ -5,10 +5,10 @@
 #include <ctime>
 #include "Player.h"
 #include "Board.h"
-#include "Board.cpp"
-#include "Player.cpp"
+// #include "Board.cpp"
+// #include "Player.cpp"
 #include "Game.h"
-#include "Game.cpp"
+// #include "Game.cpp"
 
 using namespace std;
 
@@ -278,7 +278,7 @@ int main() {
     Player player1;
     Player player2;
     int index = 0;
-    Board board;
+    Board board(2);
     Player players[2] = {player1, player2};
     Game game(players, board, 0);
 

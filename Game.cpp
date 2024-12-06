@@ -2,11 +2,9 @@
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
+#include "Game.h"
 #include "Player.h"
 #include "Board.h"
-#include "Board.cpp"
-#include "Player.cpp"
-#include "Game.h"
 
 using namespace std;
 

@@ -1,14 +1,10 @@
 #include <iostream>
-#include <fstream>
-#include <cstdlib>
-#include <ctime>
-#include "Player.h"
 #include "Board.h"
-#include "Board.cpp"
-#include "Player.cpp"
+#include "Player.h"
 
 
-
+#ifndef GAME_H
+#define GAME_H
 
 class Game{
     private:
@@ -25,3 +21,5 @@ class Game{
         void determineWinner();  
         int split(string input_string, char separator, string arr[], const int ARR_SIZE);
 };
+
+#endif

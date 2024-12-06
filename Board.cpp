@@ -121,16 +121,16 @@ void Board::initializeTiles(int player_index)
 }
 
 
-// Board::Board()
-// {
-//     _player_count = 1;
+Board::Board()
+{
+    _player_count = 1;
 
-//     // Initialize player position
-//     _player_position[0] = 0;
+    // Initialize player position
+    _player_position[0] = 0;
 
-//     // Initialize tiles
-//     initializeTiles();
-// }
+    // Initialize tiles
+    initializeTiles(1);
+}
 
 Board::Board(int player_count)
 {
