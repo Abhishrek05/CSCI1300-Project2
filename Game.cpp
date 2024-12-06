@@ -9,6 +9,11 @@
 using namespace std;
 
 
+// Fix chooseChar (get name and age to print)
+// Fix Main Menu
+// Fix board (random color probablities)(tranfer)
+// Move the player after each turn
+
 Game::Game(Player players[2], Board board, int turn) {
     player[0] = players[0];
     player[1] = players[1];
@@ -57,7 +62,7 @@ int Game::split(string input_string, char separator, string arr[], const int ARR
 
 void Game::chooseCharacters(Player player[], int playerIndex){
     displayCharacters();
-    cout<<"Player "<<playerIndex<<", choose your character."<<endl;
+    cout<<"Player "<<playerIndex+1<<", choose your character."<<endl;
     cout<<"Input the corresponding number to choose a character."<<endl;
     int input = 0;
     cin>>input;
@@ -105,17 +110,17 @@ void Game::chooseCharacters(Player player[], int playerIndex){
 }
 
 void Game::chooseAdvisor(Player player){
-    cout<<"Input the corresponding number to choose an advisor."<<endl;
-    int input = 0;
-    cin>>input;
-    
+
     string AdivsorName[5] = {"Rafiki", "Nala", "Sarabi", "Zazu", "Sarafina"};
 
     for(int i = 0; i < 5; i++){
         cout << i+1 << ") " << AdivsorName[i] << endl;
     }
 
+    cout<<"Input the corresponding number to choose an advisor."<<endl;
+    int input = 0;
     cin>>input;
+    
 
     player.setAdvisor(AdivsorName[input - 1]);
 
