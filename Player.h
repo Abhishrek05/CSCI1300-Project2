@@ -31,7 +31,7 @@ class Player {
         void setWisdom(int);
         void setPridePoints(int);
         void setAge(int);
-        void trainCub(int, int, int);
+        void trainCub();
         void toPrideLands();
         void printStats();
 };

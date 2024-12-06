@@ -87,10 +87,10 @@ void Player::setAge(int age) {
     _age = age;
 }
 
-void Player::trainCub(int strength, int stamina, int wisdom) {
-    _strength = getStrength() + strength;
-    _stamina = getStamina() + stamina;
-    _wisdom = getWisdom() + wisdom;
+void Player::trainCub() {
+    _strength = getStrength() + 500;
+    _stamina = getStamina() + 500;
+    _wisdom = getWisdom() + 1000;
     _pride_points = getPridePoints() - 5000;
 }
 

@@ -17,8 +17,9 @@ class Game{
         void chooseAdvisor(Player player);
         void displayCharacters();
         void selectPath();
-        void playgame();
+        void playGame();
         void determineWinner();  
+        void displayMainMenu();
         int split(string input_string, char separator, string arr[], const int ARR_SIZE);
 };
 

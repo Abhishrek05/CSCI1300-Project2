@@ -57,6 +57,7 @@ int Game::split(string input_string, char separator, string arr[], const int ARR
 
 void Game::chooseCharacters(Player player[], int playerIndex){
     displayCharacters();
+    cout<<"Player "<<playerIndex<<", choose your character."<<endl;
     cout<<"Input the corresponding number to choose a character."<<endl;
     int input = 0;
     cin>>input;
@@ -133,6 +134,114 @@ void Game::displayCharacters() {
         count++;
     }
 }
-        // void selectPath();
-        // void playgame();
-        // void determineWinner();  
+
+void Game::displayMainMenu() {
+        int choice;
+        do {
+            cout << "Main Menu:" << endl;
+            cout << "1. Check Player Progress" << endl;
+            cout << "2. Review Character" << endl;
+            cout << "3. Check Position" << endl;
+            cout << "4. Review Advisor" << endl;
+            cout << "5. Move Forward" << endl;
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            switch (choice) {
+                case 1:
+                    player[currentTurn].printStats();
+                    break;
+                case 2:
+                    cout << "Character: " << player[currentTurn].getName() << endl;
+                    break;
+                case 3:
+                    gameBoard.displayBoard();
+                    break;
+                case 4:
+                    cout << "Advisor: " << player[currentTurn].getAdvisor() << endl;
+                    break;
+                case 5:
+                    // Simulate dice roll (1-6)
+                    int steps = (rand() % 6) + 1;
+                    cout << "You rolled a " << steps << endl;
+                    // TODO: Implement tile-specific logic when moving
+                    break;
+            }
+        } while (choice != 5);
+    }
+
+
+void Game::selectPath(){
+    for(int i = 0; i < 2; i++){
+        cout << "Player "<<i+1<<", choose your path:"<<endl;
+        cout<<"1. Pridelands\n2. Cub Training"<<endl;
+        int choice;
+        cin >> choice;
+
+        while(choice < 1 || choice > 2){
+            cout << "Invalid choice, try again." << endl;
+            cout << "Player "<<i+1<<", choose your path:"<<endl;
+            cout<<"1. Pridelands\n2. Cub Training"<<endl;
+            cin >> choice;
+        }
+        if(choice == 1){
+            player[i].toPrideLands();
+        }
+        else if(choice == 2){
+            player[i].trainCub();
+            chooseAdvisor(player[i]);
+        }
+    }
+
+}
+
+void Game::playGame() {
+        gameBoard = Board(2);  // Initialize board for 2 players
+        currentTurn = 0;
+
+        while (true) {
+            // Display current board state
+            cout << "Current Board State:" << endl;
+            gameBoard.displayBoard();
+
+            // Display current player's stats
+            cout << "Player " << currentTurn + 1 << " Turn:" << endl;
+            player[currentTurn].printStats();
+
+            // Main menu
+            displayMainMenu();
+
+            // Switch turns
+            currentTurn = (currentTurn + 1) % 2;
+
+            // Check win condition (when a player reaches the end)
+            if (gameBoard.getPlayerPosition(currentTurn) == 51) {
+                break;
+            }
+        }
+
+        // Determine winner
+        determineWinner();
+    }
+void Game::determineWinner(){
+    if(player[0].getPridePoints() > player[1].getPridePoints()){
+        cout<< "Player 1 Wins! :D" << endl;
+        cout<<"Player 1 stats:"<<endl;
+        player[0].printStats();
+        cout<<"Player 2 stats:"<<endl;
+        player[1].printStats();
+    }
+    else if(player[0].getPridePoints() < player[1].getPridePoints()){
+        cout<< "Player 2 Wins! :D" << endl;
+        cout<<"Player 1 stats:"<<endl;
+        player[0].printStats();
+        cout<<"Player 2 stats:"<<endl;
+        player[1].printStats();
+    }else{
+        cout << "It's a Tie!!!" << endl;
+        cout<<"Player 1 stats:"<<endl;
+        player[0].printStats();
+        cout<<"Player 2 stats:"<<endl;
+        player[1].printStats();
+    }
+}

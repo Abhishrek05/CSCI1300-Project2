@@ -5,10 +5,8 @@
 #include <ctime>
 #include "Player.h"
 #include "Board.h"
-// #include "Board.cpp"
-// #include "Player.cpp"
 #include "Game.h"
-// #include "Game.cpp"
+
 
 using namespace std;
 
@@ -273,17 +271,19 @@ using namespace std;
 // };
 
 int main() {
-    //Game lionKingGame;
-    //lionKingGame.run();
     Player player1;
     Player player2;
     int index = 0;
     Board board(2);
+    srand(time(0));
     Player players[2] = {player1, player2};
     Game game(players, board, 0);
 
-    game.chooseCharacters(players, index);
-    players[0].printStats();
-    //game.chooseAdvisor(player1);
+    for(int i = 0; i < 2; i++) {
+        game.chooseCharacters(players, i);
+    }
+    game.selectPath();
+    game.playGame();
+
     return 0;
 }
