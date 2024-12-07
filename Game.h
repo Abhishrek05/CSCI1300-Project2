@@ -21,6 +21,7 @@ class Game{
         void determineWinner();  
         void displayMainMenu();
         int split(string input_string, char separator, string arr[], const int ARR_SIZE);
+        void run();
 };
 
 #endif

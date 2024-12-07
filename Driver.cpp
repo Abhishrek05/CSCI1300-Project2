@@ -271,19 +271,17 @@ using namespace std;
 // };
 
 int main() {
-    Player player1;
-    Player player2;
-    int index = 0;
     Board board(2);
-    srand(time(0));
-    Player players[2] = {player1, player2};
+    Player players[2];
     Game game(players, board, 0);
+    game.run();
 
-    for(int i = 0; i < 2; i++) {
-        game.chooseCharacters(players, i);
-    }
-    game.selectPath();
-    game.playGame();
+    // for(int i = 0; i < 2; i++) {
+    //     game.chooseCharacters(players, i);
+    // }
+    // game.selectPath();
+    // game.playGame();
+    
 
     return 0;
 }

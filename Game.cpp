@@ -11,12 +11,12 @@ using namespace std;
 
 // Fix chooseChar (get name and age to print)
 // Fix Main Menu
-// Fix board (random color probablities)(tranfer)
+// Fix board (random color probablities)(tranfer) - done
 // Move the player after each turn
-
-Game::Game(Player players[2], Board board, int turn) {
-    player[0] = players[0];
-    player[1] = players[1];
+//
+Game::Game(Player players[], Board board, int turn) {
+    // player[0] = players[0];
+    // player[1] = players[1];
     gameBoard = board;
     currentTurn = turn;
 }
@@ -111,6 +111,8 @@ void Game::chooseCharacters(Player player[], int playerIndex){
 
 void Game::chooseAdvisor(Player player){
 
+    cout<<"To go to Cub Training, you must select an adviosr to guide you."<<endl;
+
     string AdivsorName[5] = {"Rafiki", "Nala", "Sarabi", "Zazu", "Sarafina"};
 
     for(int i = 0; i < 5; i++){
@@ -163,7 +165,11 @@ void Game::displayMainMenu() {
                     gameBoard.displayBoard();
                     break;
                 case 4:
-                    cout << "Advisor: " << player[currentTurn].getAdvisor() << endl;
+                    if(player[currentTurn].getAdvisor() == "") {
+                        cout << "No current Advisor" << endl;
+                    } else {
+                        cout << "Advisor: " << player[currentTurn].getAdvisor() << endl;
+                    }
                     break;
                 case 5:
                     // Simulate dice roll (1-6)
@@ -176,7 +182,7 @@ void Game::displayMainMenu() {
     }
 
 
-void Game::selectPath(){
+void Game::selectPath() {
     for(int i = 0; i < 2; i++){
         cout << "Player "<<i+1<<", choose your path:"<<endl;
         cout<<"1. Pridelands\n2. Cub Training"<<endl;
@@ -196,13 +202,13 @@ void Game::selectPath(){
             player[i].trainCub();
             chooseAdvisor(player[i]);
         }
-    }
-
+    }    
 }
 
 void Game::playGame() {
         gameBoard = Board(2);  // Initialize board for 2 players
         currentTurn = 0;
+        // player[currentTurn].printStats();
 
         while (true) {
             // Display current board state
@@ -249,4 +255,17 @@ void Game::determineWinner(){
         cout<<"Player 2 stats:"<<endl;
         player[1].printStats();
     }
+}
+
+void Game::run() {
+    srand(time(0));
+    Game game(player, gameBoard, currentTurn);
+
+    for(int i = 0; i < 2; i++) {
+        game.chooseCharacters(player, i);
+    }
+    player[0].printStats();
+    player[1].printStats();
+    game.selectPath();
+    game.playGame();
 }
