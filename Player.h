@@ -5,7 +5,7 @@ based on the special tiles in the game, there are modifications to the specific 
 oasis, counseling, graveyard, hyenas, challenge*/
 #ifndef PLAYER_H
 #define PLAYER_H
-
+//player.h
 #include <iostream>
 
 using namespace std;

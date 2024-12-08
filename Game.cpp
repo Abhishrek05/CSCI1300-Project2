@@ -1,3 +1,4 @@
+//Game.cpp
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -62,7 +63,7 @@ int Game::split(string input_string, char separator, string arr[], const int ARR
 
 void Game::chooseCharacters(Player player[], int playerIndex){
     displayCharacters();
-    cout<<"Player "<<playerIndex+1<<", choose your character."<<endl;
+    cout<<"Player "<< playerIndex+1 <<", choose your character."<<endl;
     cout<<"Input the corresponding number to choose a character."<<endl;
     int input = 0;
     cin>>input;
@@ -214,10 +215,11 @@ void Game::playGame() {
             // Display current board state
             cout << "Current Board State:" << endl;
             gameBoard.displayBoard();
+            cout << endl;
 
             // Display current player's stats
             cout << "Player " << currentTurn + 1 << " Turn:" << endl;
-            player[currentTurn].printStats();
+            // player[currentTurn].printStats();
 
             // Main menu
             displayMainMenu();
@@ -264,8 +266,16 @@ void Game::run() {
     for(int i = 0; i < 2; i++) {
         game.chooseCharacters(player, i);
     }
+
+    system("cls"); //clears the terminal so it looks clean (found it on stackoverflow)
+
     player[0].printStats();
+    cout << endl;
     player[1].printStats();
     game.selectPath();
+    cout<< endl;
+
+    system("cls");
+
     game.playGame();
 }

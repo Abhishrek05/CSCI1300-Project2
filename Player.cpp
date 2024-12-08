@@ -7,6 +7,7 @@
  6. Calculate all pride points for player
  7. print out player stats
 */
+//player.cpp
 #include "Player.h"
 #include <iostream>
 
