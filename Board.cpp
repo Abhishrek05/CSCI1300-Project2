@@ -241,12 +241,9 @@ bool Board::movePlayer(int player_index, int steps)
     if (_player_position[player_index] >= _BOARD_SIZE - 1)
     {
         // Player reached last tile
+        _player_position[player_index] = 51;
         return true;
     }
-
-    // if(_player_position[player_index] >= 51) {
-    //     _player_position[player_index] == 51;   
-    // }
     return false;
 }
 
