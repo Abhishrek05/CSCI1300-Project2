@@ -16,10 +16,10 @@ class Game{
         void chooseCharacters(Player player[], int playerIndex);
         void chooseAdvisor(Player player);
         void displayCharacters();
-        void selectPath();
-        void playGame();
+        void selectPath(Player chars[2]);
+        void playGame(Player chars[2]);
         void determineWinner();  
-        void displayMainMenu();
+        void displayMainMenu(Player chars[2]);
         int split(string input_string, char separator, string arr[], const int ARR_SIZE);
         void run();
 };

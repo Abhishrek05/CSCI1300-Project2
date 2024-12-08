@@ -16,8 +16,8 @@ using namespace std;
 // Move the player after each turn - done
 //
 Game::Game(Player players[], Board board, int turn) {
-    // player[0] = players[0];
-    // player[1] = players[1];
+    player[0] = players[0];
+    player[1] = players[1];
     gameBoard = board;
     currentTurn = turn;
 }
@@ -143,7 +143,7 @@ void Game::displayCharacters() {
     }
 }
 
-void Game::displayMainMenu() {
+void Game::displayMainMenu(Player chars[]) {
         int choice;
         do {
             cout << "Main Menu:" << endl;
@@ -157,19 +157,19 @@ void Game::displayMainMenu() {
 
             switch (choice) {
                 case 1:
-                    player[currentTurn].printStats();
+                    chars[currentTurn].printStats();
                     break;
                 case 2:
-                    cout << "Character: " << player[currentTurn].getName() << endl;
+                    cout << "Character: " << chars[currentTurn].getName() << endl;
                     break;
                 case 3:
                     gameBoard.displayBoard();
                     break;
                 case 4:
-                    if(player[currentTurn].getAdvisor() == "") {
+                    if(chars[currentTurn].getAdvisor() == "") {
                         cout << "No current Advisor" << endl;
                     } else {
-                        cout << "Advisor: " << player[currentTurn].getAdvisor() << endl;
+                        cout << "Advisor: " << chars[currentTurn].getAdvisor() << endl;
                     }
                     break;
                 case 5:
@@ -183,7 +183,9 @@ void Game::displayMainMenu() {
     }
 
 
-void Game::selectPath() {
+void Game::selectPath(Player chars[]) {
+    // chars[0] = player[0];
+    // chars[1] = player[1];
     for(int i = 0; i < 2; i++){
         cout << "Player "<<i+1<<", choose your path:"<<endl;
         cout<<"1. Pridelands\n2. Cub Training"<<endl;
@@ -197,16 +199,16 @@ void Game::selectPath() {
             cin >> choice;
         }
         if(choice == 1){
-            player[i].toPrideLands();
+            chars[i].toPrideLands();
         }
         else if(choice == 2){
-            player[i].trainCub();
-            chooseAdvisor(player[i]);
+            chars[i].trainCub();
+            chooseAdvisor(chars[i]);
         }
-    }    
+    } 
 }
 
-void Game::playGame() {
+void Game::playGame(Player chars[]) {
         gameBoard = Board(2);  // Initialize board for 2 players
         currentTurn = 0;
         // player[currentTurn].printStats();
@@ -222,7 +224,7 @@ void Game::playGame() {
             // player[currentTurn].printStats();
 
             // Main menu
-            displayMainMenu();
+            displayMainMenu(chars);
 
             // Switch turns
             currentTurn = (currentTurn + 1) % 2;
@@ -273,10 +275,10 @@ void Game::run() {
     player[0].printStats();
     cout << endl;
     player[1].printStats();
-    game.selectPath();
+    game.selectPath(player);
     cout<< endl;
 
     system("cls");
 
-    game.playGame();
+    game.playGame(player);
 }
