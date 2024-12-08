@@ -13,7 +13,7 @@ using namespace std;
 // Fix chooseChar (get name and age to print)
 // Fix Main Menu
 // Fix board (random color probablities)(tranfer) - done
-// Move the player after each turn
+// Move the player after each turn - done
 //
 Game::Game(Player players[], Board board, int turn) {
     // player[0] = players[0];
@@ -228,13 +228,14 @@ void Game::playGame() {
             currentTurn = (currentTurn + 1) % 2;
 
             // Check win condition (when a player reaches the end)
-            if (gameBoard.getPlayerPosition(1) == 51 && gameBoard.getPlayerPosition(2) == 51) {
+            if (gameBoard.getPlayerPosition(0) == 51 && gameBoard.getPlayerPosition(1) == 51) {
+                determineWinner();
                 break;
             }
         }
 
-        // Determine winner
-        determineWinner();
+        // // Determine winner
+        // determineWinner();
     }
 void Game::determineWinner(){
     if(player[0].getPridePoints() > player[1].getPridePoints()){
