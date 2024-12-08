@@ -159,10 +159,12 @@ bool Board::isPlayerOnTile(int player_index, int pos)
     return false;
 }
 
-void Board::displayTile(int player_index, int pos)
+void Board::displayTile(int player1path, int player2path, int player_index, int pos)
 {
     // string space = "                                       ";
     string color = "";
+    int player1 = isPlayerOnTile(player1path, pos);
+    int player2 = isPlayerOnTile(player2path, pos);
     int player = isPlayerOnTile(player_index, pos);
 
     // Template for displaying a tile: <line filler space> <color start> |<player symbol or blank space>| <reset color> <line filler space> <endl>
@@ -201,30 +203,46 @@ void Board::displayTile(int player_index, int pos)
         color = GREY;
     }
 
-     if (player == true)
-    {
+        if(player == true) {
         cout << color << "|" << (player_index + 1) << "|" << RESET;
-    }
-    else
-    {
+        } else {
         cout << color << "| |" << RESET;
-    }
+        }
+
+    // if(player1 == true && player2 == true) {
+    //     cout << color << "|" << 1 << "&" << 2 << "|" << RESET;
+    // } else {
+    //     if(player1 == true) {
+    //         cout << color << "|" << player1 << "|" << RESET;
+    //     } else {
+    //         cout << color << "| |" << RESET;
+    //     }
+
+    //     if(player2 == true) {
+    //         cout << color << "|" << player1 << "|" << RESET;
+    //     } else {
+    //         cout << color << "| |" << RESET;
+    //     }
+    //     // } else {
+    //     //     cout << color << "| |" << RESET;
+    //     // }
+    // }
 }
 
-void Board::displayTrack(int player_index)
+void Board::displayTrack(bool player1path, bool player2path, int player_index)
 {
     for (int i = 0; i < _BOARD_SIZE; i++)
     {
-        displayTile(player_index, i);
+        displayTile(player1path, player2path, player_index, i);
     }
     cout << endl;
 }
 
-void Board::displayBoard()
+void Board::displayBoard(bool player1path, bool player2path)
 {
     for (int i = 0; i < 2; i++)
     {
-        displayTrack(i);
+        displayTrack(player1path, player2path, i);
         if (i == 0) {
             cout << endl;  // Add an extra line between the two lanes
         }

@@ -21,6 +21,7 @@ Player::Player() {
     _wisdom = 100;
     _pride_points = 20000; //should start with 20,000 pride points 
     currentAdvisor = ""; //potential advisor
+    isOnPride = true;
 }
 
 Player::Player(string name, int strength, int stamina, int wisdom) {
@@ -109,4 +110,12 @@ void Player::printStats() {
     cout<<"Stamina: "<<_stamina<<endl;
     cout<<"Wisdom: "<<_wisdom<<endl;
     cout<<"Pride Points: "<<_pride_points<<endl;
+}
+
+void Player::setPath(bool y) {
+    isOnPride = y;
+}
+
+bool Player::getPath() {
+    return isOnPride;
 }
