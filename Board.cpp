@@ -231,15 +231,22 @@ void Board::displayBoard()
     }
 }
 
-bool Board::movePlayer(int player_index)
+bool Board::movePlayer(int player_index, int steps)
 {
     // Increment player position
-    _player_position[player_index]++;
-    if (_player_position[player_index] == _BOARD_SIZE - 1)
+    _player_position[player_index] += steps;
+
+    
+
+    if (_player_position[player_index] >= _BOARD_SIZE - 1)
     {
         // Player reached last tile
         return true;
     }
+
+    // if(_player_position[player_index] >= 51) {
+    //     _player_position[player_index] == 51;   
+    // }
     return false;
 }
 

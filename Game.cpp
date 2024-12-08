@@ -176,7 +176,7 @@ void Game::displayMainMenu() {
                     // Simulate dice roll (1-6)
                     int steps = (rand() % 6) + 1;
                     cout << "You rolled a " << steps << endl;
-                    // TODO: Implement tile-specific logic when moving
+                    gameBoard.movePlayer(currentTurn, steps);
                     break;
             }
         } while (choice != 5);
@@ -228,7 +228,7 @@ void Game::playGame() {
             currentTurn = (currentTurn + 1) % 2;
 
             // Check win condition (when a player reaches the end)
-            if (gameBoard.getPlayerPosition(currentTurn) == 51) {
+            if (gameBoard.getPlayerPosition(1) == 51 && gameBoard.getPlayerPosition(2) == 51) {
                 break;
             }
         }
