@@ -14,7 +14,7 @@ class Game{
     public:
         Game(Player players[2], Board board, int turn);
         void chooseCharacters(Player player[], int playerIndex);
-        void chooseAdvisor(Player player);
+        void chooseAdvisor(Player chars[2], int index);
         void displayCharacters();
         void selectPath(Player chars[2]);
         void playGame(Player chars[2]);

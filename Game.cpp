@@ -110,7 +110,7 @@ void Game::chooseCharacters(Player player[], int playerIndex){
     }
 }
 
-void Game::chooseAdvisor(Player player){
+void Game::chooseAdvisor(Player chars[], int index){
 
     cout<<"To go to Cub Training, you must select an adviosr to guide you."<<endl;
 
@@ -125,7 +125,7 @@ void Game::chooseAdvisor(Player player){
     cin>>input;
     
 
-    player.setAdvisor(AdivsorName[input - 1]);
+    chars[index].setAdvisor(AdivsorName[input - 1]);
 
 }
 void Game::displayCharacters() {
@@ -203,7 +203,7 @@ void Game::selectPath(Player chars[]) {
         }
         else if(choice == 2){
             chars[i].trainCub();
-            chooseAdvisor(chars[i]);
+            chooseAdvisor(chars, i);
         }
     } 
 }
