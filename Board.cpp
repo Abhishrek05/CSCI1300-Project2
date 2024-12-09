@@ -362,6 +362,58 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
 
     if (tile.color == 'G') {
             //implement
+        ifstream randomFile("random.txt");  // Open the file with the questions and answers
+        if (!randomFile) {
+            cout << "Could not open the file!" << endl;
+        }
+
+        string line;  // Maximum number of questions you want to store
+        string descripton[7];
+        int pathType[7];
+        int advisor[7];
+        int points[7];
+        int count = 0;
+
+        while (getline(randomFile, line) && count < 8) {
+            string parts[4];  // Array to store the question and answer parts
+
+            int splitCount = split(line, '|', parts, 4);
+
+            if (splitCount == 2) {
+                descripton[count] = parts[0];  // First part is the question
+                pathType[count] = stoi(parts[1]);    // Second part is the answer
+                advisor[count] = stoi(parts[2]);
+                points[count] = stoi(parts[3]);
+                count++;
+            } else if (splitCount == -1) {
+                cout << "Error: Line exceeded maximum splits." << endl;
+            } else if (splitCount == 0) {
+                cout << "Error: Empty line encountered." << endl;
+            }
+        }
+
+        randomFile.close();
+
+        int rando = rand() % 100;
+
+        if(rando > 50) {
+            cout<<"You have triggered a random event."<<endl;
+            int randomIndex = rand() % 7 + 1;
+            if(!chars[player_index].getPath()) {
+                while(pathType[randomIndex] != 1 || pathType[randomIndex] != 2) {
+                    randomIndex = rand() % 7 + 1;
+                }
+                cout<<descripton[randomIndex]<<endl;
+                if(chars[player_index].getAdvisor() == "Rafiki") { //TODO:Implement a way to check advisor
+                    cout<<"Due to your advisor "<<chars[player_index].getAdvisor()<<", you can safley bypass the event."<<endl;
+                } else {
+                    cout<<"This event has caused a change in your pride points. Pride Points added: "<<points[randomIndex]<<endl;
+                    chars[player_index].addPridePoints(points[randomIndex]);
+                }
+            }
+        }
+
+
     } else if (tile.color == 'B') {
         cout << "Oasis Tile: Gain 200 points to all attributes and an extra turn!" << endl;
         chars[player_index].oasisTile();
@@ -379,10 +431,10 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
         _player_position[player_index] = max(0, pos - 1); // Example logic for previous position
          chars[player_index].heynaTile();
     } else if (tile.color == 'U') {
-            cout << "Time for a test of wits! Answer a riddle and you'll earn a boost of 500 Points to your Wisdom Trait, your cleverness pays off!" << endl;
-            ifstream inputFile("riddles.txt");  // Open the file with the questions and answers
+        cout << "Time for a test of wits! Answer a riddle and you'll earn a boost of 500 Points to your Wisdom Trait, your cleverness pays off!" << endl;
+        ifstream inputFile("riddles.txt");  // Open the file with the questions and answers
         if (!inputFile) {
-            cerr << "Could not open the file!" << endl;
+            cout << "Could not open the file!" << endl;
         }
 
         string line;
@@ -401,9 +453,9 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
                 answers[questionCount] = parts[1];    // Second part is the answer
                 questionCount++;
             } else if (splitCount == -1) {
-                cerr << "Error: Line exceeded maximum splits." << endl;
+                cout << "Error: Line exceeded maximum splits." << endl;
             } else if (splitCount == 0) {
-                cerr << "Error: Empty line encountered." << endl;
+                cout << "Error: Empty line encountered." << endl;
             }
         }
 
@@ -411,12 +463,13 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
 
         string ans = " ";
 
-        int randomIndex = rand() % questionCount;  
+        int randomIndex = rand() % questionCount + 1; 
         cout << "Question: " << questions[randomIndex] << endl;
         cin >> ans;
         if(ans == answers[randomIndex]){
              cout << "Correct enjoy 500 points!" << endl;
-             //implement
+             ////implement
+             chars[player_index].addWisdom(500);
         }else{
             cout << "no" << endl;
         }

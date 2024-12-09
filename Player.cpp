@@ -73,16 +73,32 @@ void Player::setStrength(int strength) {
     _strength = strength;
 }
 
+void Player::addStrength(int strength) {
+    _strength = getStrength() + strength;
+}
+
 void Player::setStamina(int stamina) {
     _stamina = stamina;
+}
+
+void Player::addStamina(int stamina) {
+    _stamina = getStamina() + stamina;
 }
 
 void Player::setWisdom(int wisdom) {
     _wisdom = wisdom;
 }
 
+void Player::addWisdom(int wisdom) {
+    _wisdom = getWisdom() + wisdom;
+}
+
 void Player::setPridePoints(int pride_points) {
     _pride_points = pride_points;
+}
+
+void Player::addPridePoints(int pride_points) {
+    _pride_points = getPridePoints() + pride_points;
 }
 
 void Player::setAge(int age) {
@@ -129,10 +145,22 @@ void Player::graveyardTile(){
     _strength = getStrength() - 100;
     _stamina = getStamina() - 100;
     _wisdom = getWisdom() - 100;
+    if(_stamina < 100) {
+        _stamina = 100;
+    }
+    if(_strength < 100) {
+        _strength = 100;
+    }
+    if(_wisdom < 100) {
+        _wisdom = 100;
+    }
 }
 
 void Player::heynaTile(){
     _stamina = getStamina() - 300;
+    if(_stamina < 100) {
+        _stamina = 100;
+    }
 }
 
 void Player::setPath(bool y) {

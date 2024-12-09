@@ -28,9 +28,13 @@ class Player {
         void setName(string);
         void setAdvisor(string);
         void setStrength(int);
+        void addStrength(int);
         void setStamina(int);
+        void addStamina(int);
         void setWisdom(int);
+        void addWisdom(int);
         void setPridePoints(int);
+        void addPridePoints(int);
         void setAge(int);
         void trainCub();
         void toPrideLands();

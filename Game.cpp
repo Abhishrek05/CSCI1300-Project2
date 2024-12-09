@@ -238,7 +238,8 @@ void Game::playGame(Player chars[]) {
 
             // Check win condition (when a player reaches the end)
             if (gameBoard.getPlayerPosition(0) == 51 && gameBoard.getPlayerPosition(1) == 51) {
-                determineWinner();
+                gameBoard.displayBoard(chars[0].getPath(), chars[1].getPath());
+                determineWinner(chars);
                 break;
             }
         }
@@ -246,26 +247,26 @@ void Game::playGame(Player chars[]) {
         // // Determine winner
         // determineWinner();
     }
-void Game::determineWinner(){
-    if(player[0].getPridePoints() > player[1].getPridePoints()){
+void Game::determineWinner(Player chars[]){
+    if(chars[0].getPridePoints() > chars[1].getPridePoints()){
         cout<< "Player 1 Wins! :D" << endl;
         cout<<"Player 1 stats:"<<endl;
-        player[0].printStats();
+        chars[0].printStats();
         cout<<"Player 2 stats:"<<endl;
-        player[1].printStats();
+        chars[1].printStats();
     }
-    else if(player[0].getPridePoints() < player[1].getPridePoints()){
+    else if(chars[0].getPridePoints() < chars[1].getPridePoints()){
         cout<< "Player 2 Wins! :D" << endl;
         cout<<"Player 1 stats:"<<endl;
-        player[0].printStats();
+        chars[0].printStats();
         cout<<"Player 2 stats:"<<endl;
-        player[1].printStats();
+        chars[1].printStats();
     }else{
         cout << "It's a Tie!!!" << endl;
         cout<<"Player 1 stats:"<<endl;
-        player[0].printStats();
+        chars[0].printStats();
         cout<<"Player 2 stats:"<<endl;
-        player[1].printStats();
+        chars[1].printStats();
     }
 }
 

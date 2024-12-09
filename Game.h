@@ -18,7 +18,7 @@ class Game{
         void displayCharacters();
         void selectPath(Player chars[2]);
         void playGame(Player chars[2]);
-        void determineWinner();  
+        void determineWinner(Player[]);  
         void displayMainMenu(Player chars[2]);
         int split(string input_string, char separator, string arr[], const int ARR_SIZE);
         void run();
