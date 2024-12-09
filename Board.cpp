@@ -391,7 +391,7 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
 
             chars[player_index].setAdvisor(AdivsorName[input - 1]);
         }
-        // choose advisor TODO
+      
     } else if (tile.color == 'R') {
         cout << "Graveyard Tile: Move back 10 tiles and lose 100 points!" << endl;
         _player_position[player_index] = max(0, pos - 10);

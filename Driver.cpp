@@ -9,7 +9,6 @@
 
 
 // TODO: Sorting Algo Implementation 
-// TODO: Secondary layers to main menue (review advisor - avisor ability, checkplayerprogess - leadership traits to pride points)
 
 
 using namespace std;
