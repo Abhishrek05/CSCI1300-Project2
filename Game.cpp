@@ -168,7 +168,7 @@ void Game::displayMainMenu(Player chars[]) {
                     cout << "Character: " << chars[currentTurn].getName() << endl;
                     break;
                 case 3:
-                    gameBoard.displayBoard();
+                    gameBoard.displayBoard(chars[0].getPath(), chars[1].getPath());
                     break;
                 case 4:
                     if(chars[currentTurn].getAdvisor() == "") {
@@ -205,9 +205,11 @@ void Game::selectPath(Player chars[]) {
         }
         if(choice == 1){
             chars[i].toPrideLands();
+            chars[i].setPath(false);
         }
         else if(choice == 2){
             chars[i].trainCub();
+            chars[i].setPath(true);
             chooseAdvisor(chars, i);
         }
     } 
@@ -221,7 +223,7 @@ void Game::playGame(Player chars[]) {
         while (true) {
             // Display current board state
             cout << "Current Board State:" << endl;
-            gameBoard.displayBoard();
+            gameBoard.displayBoard(chars[0].getPath(), chars[1].getPath());
             cout << endl;
 
             // Display current player's stats
