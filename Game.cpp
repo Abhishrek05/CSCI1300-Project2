@@ -199,11 +199,11 @@ void Game::selectPath(Player chars[]) {
         }
         if(choice == 1){
             chars[i].toPrideLands();
-            chars[i].setPath(true);
+            chars[i].setPath(false);
         }
         else if(choice == 2){
             chars[i].trainCub();
-            chars[i].setPath(false);
+            chars[i].setPath(true);
             chooseAdvisor(chars, i);
         }
     } 
@@ -279,7 +279,7 @@ void Game::run() {
     game.selectPath(player);
     cout<< endl;
 
-    system("cls");
+    //system("cls");
 
     game.playGame(player);
 }

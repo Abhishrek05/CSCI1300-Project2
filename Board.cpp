@@ -163,9 +163,9 @@ void Board::displayTile(int player1path, int player2path, int player_index, int 
 {
     // string space = "                                       ";
     string color = "";
-    int player1 = isPlayerOnTile(player1path, pos);
-    int player2 = isPlayerOnTile(player2path, pos);
-    int player = isPlayerOnTile(player_index, pos);
+    int player1 = isPlayerOnTile(0, pos);
+    int player2 = isPlayerOnTile(1, pos);
+    //int player = isPlayerOnTile(player_index, pos);
 
     // Template for displaying a tile: <line filler space> <color start> |<player symbol or blank space>| <reset color> <line filler space> <endl>
 
@@ -203,30 +203,37 @@ void Board::displayTile(int player1path, int player2path, int player_index, int 
         color = GREY;
     }
 
-        if(player == true) {
-        cout << color << "|" << (player_index + 1) << "|" << RESET;
+        // if(player == true) {
+        // cout << color << "|" << (player_index + 1) << "|" << RESET;
+        // } else {
+        // cout << color << "| |" << RESET;
+        // }
+
+    if((player1path == player_index && player2path == player_index)) {
+        if(player1 == true && player2 == true) {
+            cout << color << "|" << 1 << "&" << 2 << "|" << RESET;
+        } else if(player1 == true && player2 != true) {
+            cout << color << "|" << 1 << "|" << RESET;
+        } else if(player1 != true && player2 == true) {
+            cout << color << "|" << 2 << "|" << RESET;
         } else {
-        cout << color << "| |" << RESET;
+            cout << color << "| |" << RESET;
         }
-
-    // if(player1 == true && player2 == true) {
-    //     cout << color << "|" << 1 << "&" << 2 << "|" << RESET;
-    // } else {
-    //     if(player1 == true) {
-    //         cout << color << "|" << player1 << "|" << RESET;
-    //     } else {
-    //         cout << color << "| |" << RESET;
-    //     }
-
-    //     if(player2 == true) {
-    //         cout << color << "|" << player1 << "|" << RESET;
-    //     } else {
-    //         cout << color << "| |" << RESET;
-    //     }
-    //     // } else {
-    //     //     cout << color << "| |" << RESET;
-    //     // }
-    // }
+    } else {
+        if(player1path == player_index) {
+            if(player1 == true) {
+                cout << color << "|" << 1 << "|" << RESET;
+            } else {
+                cout << color << "| |" << RESET;
+            }
+        } else if (player2path == player_index) {
+            if(player2 == true) {
+                cout << color << "|" << 2 << "|" << RESET;
+            } else {
+                cout << color << "| |" << RESET;
+            }
+        }
+    }
 }
 
 void Board::displayTrack(bool player1path, bool player2path, int player_index)
