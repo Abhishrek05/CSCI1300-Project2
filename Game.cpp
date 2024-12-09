@@ -152,9 +152,29 @@ void Game::displayMainMenu(Player chars[]) {
             cin >> choice;
 
             switch (choice) {
-                case 1:
+                case 1:{
+                    string reponse;
                     chars[currentTurn].printStats();
+                    cout << "Would you like to convert all leadership traits to pride points? (Y/N)" << endl;
+                    cin >> reponse;
+
+                    if(reponse == "Y" || reponse == "y"){
+                        int total2 = 0;
+                        total2 += chars[currentTurn].getPridePoints() + chars[currentTurn].getStamina() + chars[currentTurn].getStrength() + chars[currentTurn].getWisdom();
+
+                        chars[currentTurn].setPridePoints(total2);
+
+                        chars[currentTurn].setStrength(100);
+                        chars[currentTurn].setStamina(100);
+                        chars[currentTurn].setWisdom(100);
+                        
+                    }
+                    else{
+                        cout << "ok bud";
+                    }
+
                     break;
+                }
                 case 2:
                     cout << "Character: " << chars[currentTurn].getName() << endl;
                     break;
