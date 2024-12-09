@@ -10,15 +10,6 @@
 using namespace std;
 
 
-// Fix chooseChar (get name and age to print) - done
-// Fix Main Menu - done 
-// Fix board (random color probablities)(tranfer) - done
-// Move the player after each turn - done
-
-
-
-
-
 
 Game::Game(Player players[], Board board, int turn) {
     player[0] = players[0];

@@ -15,39 +15,11 @@ make the player move function
 store player position
  */
 
-
-
-
-/*
-Normal tiles(green) - 50% of random even happening (randomevent.txt)
-
-• Oasis Tile (blue color tile): You’ve found a peaceful oasis! This grants the player an extra turn to keep
-moving forward—take a deep breath and relax; you also gain 200 Stamina, Strength, and Wisdom
-Points.
-• Counseling Tile (pink color tile): Welcome to the land of enrichment - when landing on this tile, your
-Stamina, Strength, and Wisdom Points increase by 300, and you get to choose an advisor from the
-available list of advisors. If you already have an advisor, you can switch your advisor out for a different
-one from the list or keep your original advisor. Don’t forget - an advisor can protect you from random
-events that negatively impact your Pride Points.
-• Graveyard Tile (red color tile): Uh-oh, you’ve stumbled into the Graveyard! This forces the player to
-move back 10 tiles and lose 100 Stamina, Strength, and Wisdom Points.
-• Hyenas Tile (brown color tile): The Hyenas are on the prowl! They drag you back to where you were
-last, and the journey comes at a cost. This returns the player to their previous position. In addition,
-the player’s Stamina Points decrease by 300 Points.
-• Challenge Tile (purple color tile): Time for a test of wits! Land here, and you’ll face a riddle randomly
-pulled from the riddles.txt file. Answer correctly, and you’ll earn a boost of 500 Points to your
-Wisdom Trait—your cleverness pays off!
-
-*/
-
-
-
-
-
-
 #include "Board.h"
 #include <iostream>
 #include <fstream>
+#include <cstdlib> // For rand() and srand()
+#include <ctime>   // For time()
 
 using namespace std;
 
@@ -71,8 +43,6 @@ void Board::initializeBoard()
     }
 }
 
-#include <cstdlib> // For rand() and srand()
-#include <ctime>   // For time()
 
 void Board::initializeTiles(int rowNum)
 {
@@ -99,28 +69,7 @@ void Board::initializeTiles(int rowNum)
         {
             // Randomly assign one of the other colors: Blue, Pink, Brown, Red, Purple
             int color_choice = rand() % 100;
-            // switch (color_choice)
-            // {
-            //     case 0:
-            //         temp.color = 'B'; // Blue
-            //         break;
-            //     case 1:
-            //         temp.color = 'P'; // Pink
-            //         break;
-            //     case 2:
-            //         temp.color = 'N'; // Brown
-            //         break;
-            //     case 3:
-            //         temp.color = 'R'; // Red
-            //         break;
-            //     case 4:
-            //         temp.color = 'U'; // Purple
-            //         break;
-            // }
-
-            //if(samePath == true && path == "Pride Lands")
-            //else if(samePath == true && path == "Advisor path")
-            //else if(samePath == false )
+           
             if(rowNum == 0) { //first half (Pride Lands)
                 if(color_choice < 25) {
                     temp.color = 'R'; //graveyard
@@ -204,8 +153,6 @@ void Board::displayTile(int player1path, int player2path, int rowNum, int pos)
     int player2 = isPlayerOnTile(1, pos);
     //int player = isPlayerOnTile(rowNum, pos);
 
-    // Template for displaying a tile: <line filler space> <color start> |<player symbol or blank space>| <reset color> <line filler space> <endl>
-
     // Determine color to display
     if (_tiles[rowNum][pos].color == 'R')
     {
@@ -241,14 +188,6 @@ void Board::displayTile(int player1path, int player2path, int rowNum, int pos)
         color = GREY;
     }
 
-    //  if (player == true)
-    // {
-    //     cout << color << "|" << (rowNum + 1) << "|" << RESET;
-    // }
-    // else
-    // {
-    //     cout << color << "| |" << RESET;
-    // }
 
     if((player1path == rowNum && player2path == rowNum)) { 
        if(player1 == true && player2 == true) {
@@ -361,7 +300,6 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
     Tile tile = _tiles[player_index][pos];
 
     if (tile.color == 'G') {
-            //implement
         ifstream randomFile("random.txt");  // Open the file with the questions and answers
         if (!randomFile) {
             cout << "Could not open the file!" << endl;
@@ -431,8 +369,6 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
                 }
             }
         }
-
-
     } else if (tile.color == 'B') {
         cout << "Oasis Tile: Gain 200 points to all attributes and an extra turn!" << endl;
         chars[player_index].oasisTile();
@@ -444,7 +380,6 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
         cout << "Graveyard Tile: Move back 10 tiles and lose 100 points!" << endl;
         _player_position[player_index] = max(0, pos - 10);
         chars[player_index].graveyardTile();
-
     } else if (tile.color == 'N') {
         cout << "Hyenas Tile: Return to previous position and lose 300 stamina!" << endl;
         _player_position[player_index] = max(0, pos - 1); // Example logic for previous position
@@ -455,7 +390,6 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
         if (!inputFile) {
             cout << "Could not open the file!" << endl;
         }
-
         string line;
         const int MAX_QUESTIONS = 100;  // Maximum number of questions you want to store
         string questions[MAX_QUESTIONS];
@@ -487,14 +421,12 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
         cin >> ans;
         if(ans == answers[randomIndex]){
              cout << "Correct enjoy 500 points!" << endl;
-             ////implement
              chars[player_index].addWisdom(500);
         }else{
             cout << "no" << endl;
         }
     }
 }
-
 
 
 int Board::getPlayerPosition(int player_index) const
