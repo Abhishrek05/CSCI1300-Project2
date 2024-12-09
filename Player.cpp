@@ -21,6 +21,7 @@ Player::Player() {
     _wisdom = 100;
     _pride_points = 20000; //should start with 20,000 pride points 
     currentAdvisor = ""; //potential advisor
+    isOnPride = true;
 }
 
 Player::Player(string name, int strength, int stamina, int wisdom) {
@@ -132,4 +133,12 @@ void Player::graveyardTile(){
 
 void Player::heynaTile(){
     _stamina = getStamina() - 300;
+}
+
+void Player::setPath(bool y) {
+    isOnPride = y;
+}
+
+bool Player::getPath() {
+    return isOnPride;
 }

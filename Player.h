@@ -14,6 +14,7 @@ class Player {
     private:
         string _name, currentAdvisor;
         int _strength, _stamina, _wisdom, _pride_points, _age;
+        bool isOnPride;
     public:
         Player();
         Player(string, int, int, int);
@@ -38,6 +39,8 @@ class Player {
         void counselingTile();
         void graveyardTile();
         void heynaTile();
+        void setPath(bool);
+        bool getPath();
 };
 
 #endif
