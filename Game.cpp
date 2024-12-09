@@ -230,6 +230,8 @@ void Game::playGame(Player chars[]) {
             // Check win condition (when a player reaches the end)
             if (gameBoard.getPlayerPosition(0) == 51 && gameBoard.getPlayerPosition(1) == 51) {
                 gameBoard.displayBoard(chars[0].getPath(), chars[1].getPath());
+                cout << chars[0].getPridePoints() << chars[1].getPridePoints() << endl;
+                statsToPridePoints(chars);
                 determineWinner(chars);
                 break;
             }
@@ -260,6 +262,22 @@ void Game::determineWinner(Player chars[]){
         chars[1].printStats();
     }
 }
+
+
+void Game::statsToPridePoints(Player chars[]) {
+    int total1 = 0;
+    int total2 = 0;
+
+    total1 += chars[0].getPridePoints() + chars[0].getStamina() + chars[0].getStrength() + chars[0].getWisdom();
+
+    total2 += chars[1].getPridePoints() + chars[1].getStamina() + chars[1].getStrength() + chars[1].getWisdom();
+
+    chars[0].setPridePoints(total1);
+    chars[1].setPridePoints(total2);
+}
+
+
+
 
 void Game::run() {
     srand(time(0));

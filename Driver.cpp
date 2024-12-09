@@ -10,9 +10,6 @@
 
 // TODO: Sorting Algo Implementation 
 // TODO: Secondary layers to main menue (review advisor - avisor ability, checkplayerprogess - leadership traits to pride points)
-//end of game convert all stats to pride points 
-// counseling tile (re-choose advisor)
-
 
 
 using namespace std;

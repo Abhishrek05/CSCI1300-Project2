@@ -375,6 +375,22 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
     } else if (tile.color == 'P') {
         cout << "Counseling Tile: Gain 300 points and choose an advisor!" << endl;
         chars[player_index].counselingTile();
+        if(chars[player_index].getAdvisor() == "") {
+            cout<<"To go to Cub Training, you must select an adviosr to guide you."<<endl;
+
+            string AdivsorName[5] = {"Rafiki - Invisibility ", "Nala - Night Vision", "Sarabi - Energy Manipulation", "Zazu - Weather Control", "Sarafina - Super Speed"};
+
+            for(int i = 0; i < 5; i++){
+                cout << i+1 << ") " << AdivsorName[i] << endl;
+            }
+
+            cout<<"Input the corresponding number to choose an advisor."<<endl;
+            int input = 0;
+            cin>>input;
+            
+
+            chars[player_index].setAdvisor(AdivsorName[input - 1]);
+        }
         // choose advisor TODO
     } else if (tile.color == 'R') {
         cout << "Graveyard Tile: Move back 10 tiles and lose 100 points!" << endl;
