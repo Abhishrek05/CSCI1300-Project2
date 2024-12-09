@@ -369,9 +369,9 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
 
         string line;  // Maximum number of questions you want to store
         string descripton[7];
-        int pathType[7];
-        int advisor[7];
-        int points[7];
+        string pathType[7];
+        string advisor[7];
+        string points[7];
         int count = 0;
 
         while (getline(randomFile, line) && count < 8) {
@@ -379,11 +379,11 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
 
             int splitCount = split(line, '|', parts, 4);
 
-            if (splitCount == 2) {
+            if (splitCount == 4) {
                 descripton[count] = parts[0];  // First part is the question
-                pathType[count] = stoi(parts[1]);    // Second part is the answer
-                advisor[count] = stoi(parts[2]);
-                points[count] = stoi(parts[3]);
+                pathType[count] = parts[1];    // Second part is the answer
+                advisor[count] = parts[2];
+                points[count] = parts[3];
                 count++;
             } else if (splitCount == -1) {
                 cout << "Error: Line exceeded maximum splits." << endl;
@@ -394,21 +394,40 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
 
         randomFile.close();
 
-        int rando = rand() % 100;
+        string advisorArray[6] = {"", "Rafiki", "Nala", "Sarabi", "Zazu", "Sarafina"};
 
+        int rando = rand() % 100;
+        int randomIndex = rand() % 6 + 1;
         if(rando > 50) {
             cout<<"You have triggered a random event."<<endl;
-            int randomIndex = rand() % 7 + 1;
-            if(!chars[player_index].getPath()) {
-                while(pathType[randomIndex] != 1 || pathType[randomIndex] != 2) {
-                    randomIndex = rand() % 7 + 1;
+            if(chars[player_index].getPath() == false) {
+                while(pathType[randomIndex] != "1" || pathType[randomIndex] != "2") {
+                    randomIndex = rand() % 6 + 1;
+                    if(pathType[randomIndex] == "1" || pathType[randomIndex] == "2") {
+                        break;
+                    }
                 }
                 cout<<descripton[randomIndex]<<endl;
-                if(chars[player_index].getAdvisor() == "Rafiki") { //TODO:Implement a way to check advisor
+                if(chars[player_index].getAdvisor() == advisorArray[randomIndex]) { //TODO:Implement a way to check advisor
                     cout<<"Due to your advisor "<<chars[player_index].getAdvisor()<<", you can safley bypass the event."<<endl;
                 } else {
                     cout<<"This event has caused a change in your pride points. Pride Points added: "<<points[randomIndex]<<endl;
-                    chars[player_index].addPridePoints(points[randomIndex]);
+                    chars[player_index].addPridePoints(stoi(points[randomIndex]));
+                }
+            } else if(chars[player_index].getPath() == true) {
+                while(pathType[randomIndex] != "0" || pathType[randomIndex] != "2") {
+                    randomIndex = rand() % 6 + 1;
+                    cout<<randomIndex<<endl;
+                    if(pathType[randomIndex] == "0" || pathType[randomIndex] == "2") {
+                        break;
+                    }
+                }
+                cout<<descripton[randomIndex]<<endl;
+                if(chars[player_index].getAdvisor() == advisorArray[randomIndex]) { //TODO:Implement a way to check advisor
+                    cout<<"Due to your advisor "<<chars[player_index].getAdvisor()<<", you can safley bypass the event."<<endl;
+                } else {
+                    cout<<"This event has caused a change in your pride points. Pride Points added: "<<points[randomIndex]<<endl;
+                    chars[player_index].addPridePoints(stoi(points[randomIndex]));
                 }
             }
         }
@@ -463,7 +482,7 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
 
         string ans = " ";
 
-        int randomIndex = rand() % questionCount + 1; 
+        int randomIndex = rand() % questionCount; 
         cout << "Question: " << questions[randomIndex] << endl;
         cin >> ans;
         if(ans == answers[randomIndex]){
