@@ -110,3 +110,26 @@ void Player::printStats() {
     cout<<"Wisdom: "<<_wisdom<<endl;
     cout<<"Pride Points: "<<_pride_points<<endl;
 }
+
+
+void Player::oasisTile(){
+    _strength = getStrength() + 200;
+    _stamina = getStamina() + 200;
+    _wisdom = getWisdom() + 200;
+}
+
+void Player::counselingTile(){
+    _strength = getStrength() + 300;
+    _stamina = getStamina() + 300;
+    _wisdom = getWisdom() + 300;
+}
+
+void Player::graveyardTile(){
+    _strength = getStrength() - 100;
+    _stamina = getStamina() - 100;
+    _wisdom = getWisdom() - 100;
+}
+
+void Player::heynaTile(){
+    _stamina = getStamina() - 300;
+}

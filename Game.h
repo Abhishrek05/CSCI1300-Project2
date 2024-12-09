@@ -22,6 +22,7 @@ class Game{
         void displayMainMenu(Player chars[2]);
         int split(string input_string, char separator, string arr[], const int ARR_SIZE);
         void run();
+        
 };
 
 #endif

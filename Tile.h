@@ -21,6 +21,7 @@ class Tile {
         char color;
         char getColor();
         string getType();
+        void setType(string type);
 };
 
 #endif

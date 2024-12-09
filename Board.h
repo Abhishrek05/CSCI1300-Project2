@@ -3,6 +3,8 @@
 #ifndef BOARD_H
 #define BOARD_H
 #include "Tile.h"
+#include "Player.h"
+
 
 class Board
 {
@@ -22,8 +24,10 @@ public:
     void displayTrack(int player_index);
     void initializeBoard();
     void displayBoard();
-    bool movePlayer(int player_index, int steps);
+    bool movePlayer(int player_index, int steps, Player chars[2]);
     int getPlayerPosition(int player_index) const;
+    void checkTileEvent(int player_index, Player chars[2]);
+    int split(string input_string, char separator, string arr[], const int ARR_SIZE);
 };
 
 #endif

@@ -20,3 +20,7 @@ char Tile::getColor() {
 string Tile::getType() {
     return type;
 }
+
+void Tile::setType(string x){
+    type = x;
+}

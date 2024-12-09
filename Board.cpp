@@ -47,6 +47,7 @@ Wisdom Trait—your cleverness pays off!
 
 #include "Board.h"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -63,6 +64,7 @@ using namespace std;
 void Board::initializeBoard()
 {
     // Seed random number generator in your main function once
+
     for (int i = 0; i < 2; i++)
     {
         initializeTiles(i);  // This ensures each lane has a unique tile distribution
@@ -72,7 +74,7 @@ void Board::initializeBoard()
 #include <cstdlib> // For rand() and srand()
 #include <ctime>   // For time()
 
-void Board::initializeTiles(int player_index)
+void Board::initializeTiles(int rowNum)
 {
     Tile temp;
     int green_count = 0;
@@ -115,7 +117,11 @@ void Board::initializeTiles(int player_index)
             //         temp.color = 'U'; // Purple
             //         break;
             // }
-            if(player_index == 0) { //first half (Pride Lands)
+
+            //if(samePath == true && path == "Pride Lands")
+            //else if(samePath == true && path == "Advisor path")
+            //else if(samePath == false )
+            if(rowNum == 0) { //first half (Pride Lands)
                 if(color_choice < 25) {
                     temp.color = 'R'; //graveyard
                 } else if (color_choice > 25 && color_choice <= 50) {
@@ -127,7 +133,7 @@ void Board::initializeTiles(int player_index)
                 } else if (color_choice > 95) {
                     temp.color = 'B';
                 }
-            } else if(player_index == 1) { //second half (Advisor Path)
+            } else if(rowNum == 1) { //second half (Advisor Path)
                 if(color_choice < 25) {
                     temp.color = 'R'; //graveyard
                 } else if(color_choice > 15 && color_choice <=30) {
@@ -143,7 +149,7 @@ void Board::initializeTiles(int player_index)
         }
 
         // Assign the tile to the board for the specified lane
-        _tiles[player_index][i] = temp;
+        _tiles[rowNum][i] = temp;
     }
 }
 
@@ -190,51 +196,52 @@ bool Board::isPlayerOnTile(int player_index, int pos)
     return false;
 }
 
-void Board::displayTile(int player_index, int pos)
+void Board::displayTile(int rowNum, int pos)
 {
     // string space = "                                       ";
     string color = "";
-    int player = isPlayerOnTile(player_index, pos);
+    int player = isPlayerOnTile(rowNum, pos);
 
     // Template for displaying a tile: <line filler space> <color start> |<player symbol or blank space>| <reset color> <line filler space> <endl>
 
     // Determine color to display
-    if (_tiles[player_index][pos].color == 'R')
+    if (_tiles[rowNum][pos].color == 'R')
     {
+        
         color = RED;
     }
-    else if (_tiles[player_index][pos].color == 'G')
+    else if (_tiles[rowNum][pos].color == 'G')
     {
         color = GREEN;
     }
-    else if (_tiles[player_index][pos].color == 'B')
+    else if (_tiles[rowNum][pos].color == 'B')
     {
         color = BLUE;
     }
-    else if (_tiles[player_index][pos].color == 'U')
+    else if (_tiles[rowNum][pos].color == 'U')
     {
         color = PURPLE;
     }
-    else if (_tiles[player_index][pos].color == 'N')
+    else if (_tiles[rowNum][pos].color == 'N')
     {
         color = BROWN;
     }
-    else if (_tiles[player_index][pos].color == 'P')
+    else if (_tiles[rowNum][pos].color == 'P')
     {
         color = PINK;
     }
-    else if (_tiles[player_index][pos].color == 'O')
+    else if (_tiles[rowNum][pos].color == 'O')
     {
         color = ORANGE;
     }
-    else if (_tiles[player_index][pos].color == 'Y')
+    else if (_tiles[rowNum][pos].color == 'Y')
     {
         color = GREY;
     }
 
      if (player == true)
     {
-        cout << color << "|" << (player_index + 1) << "|" << RESET;
+        cout << color << "|" << (rowNum + 1) << "|" << RESET;
     }
     else
     {
@@ -262,7 +269,49 @@ void Board::displayBoard()
     }
 }
 
-bool Board::movePlayer(int player_index, int steps)
+
+
+int Board::split(string input_string, char separator, string arr[], const int ARR_SIZE) {
+    int count = 0;
+    string temp = "";
+
+    if (input_string.length() == 0) {
+            return 0; 
+        }
+
+     for (unsigned int i = 0; i < input_string.length(); i++) {
+        if (input_string[i] == separator) {
+            if (count < ARR_SIZE) {
+                arr[count] = temp;
+                count++;
+            } else {
+
+                return -1;
+            }
+            temp = ""; 
+        } else {
+            temp += input_string[i]; 
+        }
+    }
+
+    if (count < ARR_SIZE) {
+        arr[count] = temp;
+        count++;
+    } else {
+        return -1;
+    }
+
+
+    if (count == 1 && arr[0] == input_string) {
+        return 1;
+    }
+
+    return count; 
+}
+
+
+
+bool Board::movePlayer(int player_index, int steps, Player chars[2])
 {
     // Increment player position
     _player_position[player_index] += steps;
@@ -275,8 +324,78 @@ bool Board::movePlayer(int player_index, int steps)
         _player_position[player_index] = 51;
         return true;
     }
+    checkTileEvent(player_index, chars);
     return false;
 }
+
+void Board::checkTileEvent(int player_index, Player chars[2]) {
+    int pos = _player_position[player_index];
+    Tile tile = _tiles[player_index][pos];
+
+    if (tile.color == 'G') {
+            //implement
+    } else if (tile.color == 'B') {
+        cout << "Oasis Tile: Gain 200 points to all attributes and an extra turn!" << endl;
+        chars[player_index].oasisTile();
+    } else if (tile.color == 'P') {
+        cout << "Counseling Tile: Gain 300 points and choose an advisor!" << endl;
+        chars[player_index].counselingTile();
+        // choose advisor TODO
+    } else if (tile.color == 'R') {
+        cout << "Graveyard Tile: Move back 10 tiles and lose 100 points!" << endl;
+        _player_position[player_index] = max(0, pos - 10);
+        chars[player_index].graveyardTile();
+
+    } else if (tile.color == 'N') {
+        cout << "Hyenas Tile: Return to previous position and lose 300 stamina!" << endl;
+        _player_position[player_index] = max(0, pos - 1); // Example logic for previous position
+         chars[player_index].heynaTile();
+    } else if (tile.color == 'U') {
+            cout << "Time for a test of wits! Answer a riddle and you'll earn a boost of 500 Points to your Wisdom Trait, your cleverness pays off!" << endl;
+            ifstream inputFile("riddles.txt");  // Open the file with the questions and answers
+        if (!inputFile) {
+            cerr << "Could not open the file!" << endl;
+        }
+
+        string line;
+        const int MAX_QUESTIONS = 100;  // Maximum number of questions you want to store
+        string questions[MAX_QUESTIONS];
+        string answers[MAX_QUESTIONS];
+        int questionCount = 0;
+
+        while (getline(inputFile, line) && questionCount < MAX_QUESTIONS) {
+            string parts[2];  // Array to store the question and answer parts
+
+            int splitCount = split(line, '|', parts, 2);
+
+            if (splitCount == 2) {
+                questions[questionCount] = parts[0];  // First part is the question
+                answers[questionCount] = parts[1];    // Second part is the answer
+                questionCount++;
+            } else if (splitCount == -1) {
+                cerr << "Error: Line exceeded maximum splits." << endl;
+            } else if (splitCount == 0) {
+                cerr << "Error: Empty line encountered." << endl;
+            }
+        }
+
+        inputFile.close();  
+
+        string ans = " ";
+
+        int randomIndex = rand() % questionCount;  
+        cout << "Question: " << questions[randomIndex] << endl;
+        cin >> ans;
+        if(ans == answers[randomIndex]){
+             cout << "Correct enjoy 500 points!" << endl;
+             //implement
+        }else{
+            cout << "no" << endl;
+        }
+    }
+}
+
+
 
 int Board::getPlayerPosition(int player_index) const
 {

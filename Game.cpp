@@ -16,6 +16,10 @@ using namespace std;
 // Move the player after each turn - done
 
 
+
+
+
+
 Game::Game(Player players[], Board board, int turn) {
     player[0] = players[0];
     player[1] = players[1];
@@ -115,7 +119,7 @@ void Game::chooseAdvisor(Player chars[], int index){
 
     cout<<"To go to Cub Training, you must select an adviosr to guide you."<<endl;
 
-    string AdivsorName[5] = {"Rafiki", "Nala", "Sarabi", "Zazu", "Sarafina"};
+    string AdivsorName[5] = {"Rafiki - Invisibility ", "Nala - Night Vision", "Sarabi - Energy Manipulation", "Zazu - Weather Control", "Sarafina - Super Speed"};
 
     for(int i = 0; i < 5; i++){
         cout << i+1 << ") " << AdivsorName[i] << endl;
@@ -177,7 +181,7 @@ void Game::displayMainMenu(Player chars[]) {
                     // Simulate dice roll (1-6)
                     int steps = (rand() % 6) + 1;
                     cout << "You rolled a " << steps << endl;
-                    gameBoard.movePlayer(currentTurn, steps);
+                    gameBoard.movePlayer(currentTurn, steps, chars);
                     break;
             }
         } while (choice != 5);

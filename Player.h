@@ -34,6 +34,10 @@ class Player {
         void trainCub();
         void toPrideLands();
         void printStats();
+        void oasisTile();
+        void counselingTile();
+        void graveyardTile();
+        void heynaTile();
 };
 
 #endif
