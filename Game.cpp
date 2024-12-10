@@ -214,10 +214,25 @@ void Game::displayMainMenu(Player chars[]) {
                     } else {
                         cout << "Advisor: " << chars[currentTurn].getAdvisor() << endl;
                     }
+                    cout << "Would you like to see each advisors power? (Y/N)" <<endl;
+                    char res;
+                    cin >> res;
+                    res = toupper(res);
+                    if(res  == 'Y') {
+                        cout << endl;
+                        string AdvisorPower[5] = {"Rafiki - Invisibility (the ability to become un-seen)", "Nala - Night Vision (the ability to see clearly in darkness)", "Sarabi - Energy Manipulation (the ability to shape and control the properties of energy)", "Zazu - Weather Control (the ability to influence and manipulate weather patterns)", "Sarafina - Super Speed (the ability to run 4x faster than the maximum speed of lions)"};
+                        for(int i = 0; i < 5; i++) {
+                            cout<<AdvisorPower[i]<<endl;
+                        }
+                    }
                     break;
                 case 5: {
                     int playerPoints[2] = {chars[0].getPridePoints(), chars[1].getPridePoints()};
                     bubbleSort(playerPoints, 2);
+                    if(playerPoints[0] == playerPoints[1]) {
+                        cout<<"It is currently a tie with both players having "<<playerPoints[0]<<" points."<<endl;
+                        break;
+                    }
                     if(chars[0].getPridePoints() == playerPoints[0]) {
                         cout<<"Player 1 is in the lead with "<<playerPoints[0]<<" points."<<endl;
                         cout<<"Player 2 is in second place with "<<playerPoints[1]<<" points."<<endl;
