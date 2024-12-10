@@ -337,6 +337,7 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
         int IMGONNALOSEIT = rand() % 100;
         int randomIndex = rand() % 6 + 1;
         if(IMGONNALOSEIT > 50) {
+            cout << endl;
             cout<<"You have triggered a random event."<<endl;
             if(chars[player_index].getPath() == false) {
                 while(pathType[randomIndex] != "1" || pathType[randomIndex] != "2") {
@@ -365,16 +366,19 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
                 } else {
                     cout<<"This event has caused a change in your pride points. Pride Points added: "<<points[randomIndex]<<endl;
                     chars[player_index].addPridePoints(stoi(points[randomIndex]));
+                    cout << endl;
                 }
             }
         }
     } else if (tile.color == 'B') {
+        cout << endl;
         cout << "Oasis Tile: Gain 200 points to all attributes and an extra roll!" << endl;
         chars[player_index].oasisTile();
         int steps = (rand() % 6) + 1;
         cout << "You rolled a " << steps << endl;
         movePlayer(player_index, steps, chars);
     } else if (tile.color == 'P') {
+        cout << endl;
         cout << "Counseling Tile: Gain 300 points and choose an advisor!" << endl;
         chars[player_index].counselingTile();
 
@@ -391,14 +395,17 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
         chars[player_index].setAdvisor(AdivsorName[input - 1]);
         
     } else if (tile.color == 'R') {
+        cout << endl;
         cout << "Graveyard Tile: Move back 10 tiles and lose 100 points!" << endl;
         _player_position[player_index] = max(0, pos - 10);
         chars[player_index].graveyardTile();
     } else if (tile.color == 'N') {
+        cout << endl;
         cout << "Hyenas Tile: Return to previous position and lose 300 stamina!" << endl;
         _player_position[player_index] = max(0, pos - 1); // Example logic for previous position
          chars[player_index].heynaTile();
     } else if (tile.color == 'U') {
+        cout << endl;
         cout << "Time for a test of wits! Answer a riddle and you'll earn a boost of 500 Points to your Wisdom Trait, your cleverness pays off!" << endl;
         ifstream inputFile("riddles.txt");  // Open the file with the questions and answers
         if (!inputFile) {
@@ -436,8 +443,10 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
         if(ans == answers[randomIndex]){
              cout << "Correct enjoy 500 points!" << endl;
              chars[player_index].addWisdom(500);
+             cout << endl;
         }else{
             cout << "no" << endl;
+            cout << endl;
         }
     }
 }

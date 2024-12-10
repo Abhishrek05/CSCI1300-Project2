@@ -5,6 +5,13 @@
 #include "Tile.h"
 #include "Player.h"
 
+//comment showing where things are (reqs)
+//2 nested loops
+//6 total loops
+//6 if statements
+//class that has an array from another class 
+//if stream and ofstream
+
 
 class Board
 {
