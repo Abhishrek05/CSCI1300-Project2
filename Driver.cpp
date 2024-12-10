@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
+#include <limits>
 #include "Player.h"
 #include "Board.h"
 #include "Game.h"

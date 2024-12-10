@@ -9,7 +9,26 @@
 
 using namespace std;
 
+void Game::bubbleSort(int arr[], int size) {
+    bool swapped;
 
+    for(int i = 0; i < size - 1; i++) {
+        swapped = false;
+
+        for(int j = 0; j < size - i - 1; j++) {
+            if(arr[j] < arr[j+1]) {
+                int temp = arr[j];
+                arr[j] = arr[j+ 1];
+                arr[j+1] = temp;
+                swapped = true;
+            }
+        }
+
+        if(!swapped) {
+            break;
+        }
+    }
+}
 
 Game::Game(Player players[], Board board, int turn) {
     player[0] = players[0];
@@ -63,6 +82,13 @@ void Game::chooseCharacters(Player player[], int playerIndex){
     cout<<"Input the corresponding number to choose a character."<<endl;
     int input = 0;
     cin>>input;
+    
+    // while(input < 1 && input > 5) {
+    //     cout<<"Invalid choice, try again."<<endl;
+    //     cout<<"Player "<< playerIndex+1 <<", choose your character."<<endl;
+    //     cout<<"Input the corresponding number to choose a character."<<endl;
+    //     cin>>input;
+    // }
     ifstream file("character.txt");
     string line;
     string arr[6];
@@ -147,7 +173,8 @@ void Game::displayMainMenu(Player chars[]) {
             cout << "2. Review Character" << endl;
             cout << "3. Check Position" << endl;
             cout << "4. Review Advisor" << endl;
-            cout << "5. Move Forward" << endl;
+            cout << "5. Leaderboard (Check who's in the lead)" << endl;
+            cout << "6. Move Forward" << endl;
             cout << "Enter your choice: ";
             cin >> choice;
 
@@ -170,7 +197,7 @@ void Game::displayMainMenu(Player chars[]) {
                         
                     }
                     else{
-                        cout << "ok bud";
+                        cout << "ok bud" << endl;
                     }
 
                     break;
@@ -188,14 +215,30 @@ void Game::displayMainMenu(Player chars[]) {
                         cout << "Advisor: " << chars[currentTurn].getAdvisor() << endl;
                     }
                     break;
-                case 5:
+                case 5: {
+                    int playerPoints[2] = {chars[0].getPridePoints(), chars[1].getPridePoints()};
+                    bubbleSort(playerPoints, 2);
+                    if(chars[0].getPridePoints() == playerPoints[0]) {
+                        cout<<"Player 1 is in the lead with "<<playerPoints[0]<<" points."<<endl;
+                        cout<<"Player 2 is in second place with "<<playerPoints[1]<<" points."<<endl;
+                    } else {
+                        cout<<"Player 2 is in the lead with "<<playerPoints[0]<<" points."<<endl;
+                        cout<<"Player 1 is in second place with "<<playerPoints[1]<<" points."<<endl;
+                    }
+                    break;
+                }
+                case 6:{
                     // Simulate dice roll (1-6)
                     int steps = (rand() % 6) + 1;
                     cout << "You rolled a " << steps << endl;
                     gameBoard.movePlayer(currentTurn, steps, chars);
                     break;
+                }
+                default: {
+                    cout<<"Invalid Choice, Try Again."<<endl;
+                }
             }
-        } while (choice != 5);
+        } while (choice != 6);
     }
 
 

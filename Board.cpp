@@ -334,9 +334,9 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
 
         string advisorArray[6] = {"", "Rafiki", "Nala", "Sarabi", "Zazu", "Sarafina"};
 
-        int rando = rand() % 100;
+        int IMGONNALOSEIT = rand() % 100;
         int randomIndex = rand() % 6 + 1;
-        if(rando > 50) {
+        if(IMGONNALOSEIT > 50) {
             cout<<"You have triggered a random event."<<endl;
             if(chars[player_index].getPath() == false) {
                 while(pathType[randomIndex] != "1" || pathType[randomIndex] != "2") {
@@ -355,7 +355,6 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
             } else if(chars[player_index].getPath() == true) {
                 while(pathType[randomIndex] != "0" || pathType[randomIndex] != "2") {
                     randomIndex = rand() % 6 + 1;
-                    cout<<randomIndex<<endl;
                     if(pathType[randomIndex] == "0" || pathType[randomIndex] == "2") {
                         break;
                     }
@@ -370,28 +369,27 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
             }
         }
     } else if (tile.color == 'B') {
-        cout << "Oasis Tile: Gain 200 points to all attributes and an extra turn!" << endl;
+        cout << "Oasis Tile: Gain 200 points to all attributes and an extra roll!" << endl;
         chars[player_index].oasisTile();
+        int steps = (rand() % 6) + 1;
+        cout << "You rolled a " << steps << endl;
+        movePlayer(player_index, steps, chars);
     } else if (tile.color == 'P') {
         cout << "Counseling Tile: Gain 300 points and choose an advisor!" << endl;
         chars[player_index].counselingTile();
-        if(chars[player_index].getAdvisor() == "") {
-            cout<<"To go to Cub Training, you must select an adviosr to guide you."<<endl;
 
-            string AdivsorName[5] = {"Rafiki - Invisibility ", "Nala - Night Vision", "Sarabi - Energy Manipulation", "Zazu - Weather Control", "Sarafina - Super Speed"};
+        string AdivsorName[5] = {"Rafiki - Invisibility ", "Nala - Night Vision", "Sarabi - Energy Manipulation", "Zazu - Weather Control", "Sarafina - Super Speed"};
 
-            for(int i = 0; i < 5; i++){
-                cout << i+1 << ") " << AdivsorName[i] << endl;
-            }
-
-            cout<<"Input the corresponding number to choose an advisor."<<endl;
-            int input = 0;
-            cin>>input;
-            
-
-            chars[player_index].setAdvisor(AdivsorName[input - 1]);
+        for(int i = 0; i < 5; i++){
+            cout << i+1 << ") " << AdivsorName[i] << endl;
         }
-      
+
+        cout<<"Input the corresponding number to choose an advisor."<<endl;
+        int input = 0;
+        cin>>input;
+        
+        chars[player_index].setAdvisor(AdivsorName[input - 1]);
+        
     } else if (tile.color == 'R') {
         cout << "Graveyard Tile: Move back 10 tiles and lose 100 points!" << endl;
         _player_position[player_index] = max(0, pos - 10);

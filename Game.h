@@ -23,6 +23,7 @@ class Game{
         int split(string input_string, char separator, string arr[], const int ARR_SIZE);
         void run();
         void statsToPridePoints(Player chars[]);
+        void bubbleSort(int arr[],int);
         
 };
 
