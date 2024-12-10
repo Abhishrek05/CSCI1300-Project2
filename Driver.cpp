@@ -9,9 +9,6 @@
 #include "Game.h"
 
 
-// TODO: Sorting Algo Implementation 
-
-
 using namespace std;
 
 int main() {

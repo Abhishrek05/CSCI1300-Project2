@@ -51,9 +51,9 @@ void Board::initializeTiles(int rowNum)
     int total_tiles = _BOARD_SIZE;
 
     // Keep track of green tile positions to ensure we place exactly 30 greens
-    for (int i = 0; i < total_tiles; i++)
+    for (int i = 0; i < total_tiles; i++)  
     {
-        if (i == total_tiles - 1) {
+        if (i == total_tiles - 1) {   // !if else statements (5)
             // Set the last tile as Orange for "Pride Rock"
             temp.color = 'O';
         } 
@@ -116,7 +116,7 @@ Board::Board()
 
 Board::Board(int player_count)
 {
-    if (player_count > _MAX_PLAYERS)
+    if (player_count > _MAX_PLAYERS) //! if else statements (6)
     {
         _player_count = _MAX_PLAYERS;
     }
@@ -300,7 +300,7 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
     Tile tile = _tiles[player_index][pos];
 
     if (tile.color == 'G') {
-        ifstream randomFile("random.txt");  // Open the file with the questions and answers
+        ifstream randomFile("random.txt");  // !Example (ifstream) of reading from a file (random.txt)
         if (!randomFile) {
             cout << "Could not open the file!" << endl;
         }
@@ -391,6 +391,9 @@ void Board::checkTileEvent(int player_index, Player chars[2]) {
         cout<<"Input the corresponding number to choose an advisor."<<endl;
         int input = 0;
         cin>>input;
+        if(input > 5){
+            input = 5;
+        }
         
         chars[player_index].setAdvisor(AdivsorName[input - 1]);
         

@@ -12,7 +12,7 @@ using namespace std;
 void Game::bubbleSort(int arr[], int size) {
     bool swapped;
 
-    for(int i = 0; i < size - 1; i++) {
+    for(int i = 0; i < size - 1; i++) { //! nested loop (6)
         swapped = false;
 
         for(int j = 0; j < size - i - 1; j++) {
@@ -40,12 +40,12 @@ int Game::split(string input_string, char separator, string arr[], const int ARR
     int count = 0;
     string temp = "";
 
-    if (input_string.length() == 0) {
+    if (input_string.length() == 0) { //! If statement(1)
             return 0; 
         }
 
-     for (unsigned int i = 0; i < input_string.length(); i++) {
-        if (input_string[i] == separator) {
+     for (unsigned int i = 0; i < input_string.length(); i++) { //! Loop (1)
+        if (input_string[i] == separator) { //! If statement(2)
             if (count < ARR_SIZE) {
                 arr[count] = temp;
                 count++;
@@ -96,7 +96,7 @@ void Game::chooseCharacters(Player player[], int playerIndex){
         cout<<"Could not open file."<<endl;
         return;
     }
-    while(getline(file, line)) {
+    while(getline(file, line)) { //! loop(2)
         split(line, '|', arr, 6);
         if(input == 1 && arr[0] == "Apollo") {
             player[playerIndex].setName(arr[0]);
@@ -138,7 +138,7 @@ void Game::chooseAdvisor(Player chars[], int index){
 
     string AdivsorName[5] = {"Rafiki - Invisibility ", "Nala - Night Vision", "Sarabi - Energy Manipulation", "Zazu - Weather Control", "Sarafina - Super Speed"};
 
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < 5; i++){ //! loop(3)
         cout << i+1 << ") " << AdivsorName[i] << endl;
     }
 
@@ -167,7 +167,7 @@ void Game::displayCharacters() {
 
 void Game::displayMainMenu(Player chars[]) {
         int choice;
-        do {
+        do {  //! loop(4)
             cout << "Main Menu:" << endl;
             cout << "1. Check Player Progress" << endl;
             cout << "2. Review Character" << endl;
@@ -178,7 +178,7 @@ void Game::displayMainMenu(Player chars[]) {
             cout << "Enter your choice: ";
             cin >> choice;
 
-            switch (choice) {
+            switch (choice) { 
                 case 1:{
                     string reponse;
                     chars[currentTurn].printStats();
@@ -260,7 +260,7 @@ void Game::displayMainMenu(Player chars[]) {
 void Game::selectPath(Player chars[]) {
     // chars[0] = player[0];
     // chars[1] = player[1];
-    for(int i = 0; i < 2; i++){
+    for(int i = 0; i < 2; i++){ // !nested for loop (5)
         cout << "Player "<<i+1<<", choose your path:"<<endl;
         cout<<"1. Pridelands\n2. Cub Training"<<endl;
         int choice;
@@ -306,37 +306,73 @@ void Game::playGame(Player chars[]) {
             currentTurn = (currentTurn + 1) % 2;
 
             // Check win condition (when a player reaches the end)
-            if (gameBoard.getPlayerPosition(0) == 51 && gameBoard.getPlayerPosition(1) == 51) {
+            if (gameBoard.getPlayerPosition(0) == 51 && gameBoard.getPlayerPosition(1) == 51) {  // !if statement(3)
                 gameBoard.displayBoard(chars[0].getPath(), chars[1].getPath());
+                writeStatsToFile(chars);
                 statsToPridePoints(chars);
                 determineWinner(chars);
                 break;
             }
         }
 
-        // // Determine winner
-        // determineWinner();
     }
+
+void Game::writeStatsToFile(Player chars[]){
+   ofstream writeF("player_stats.txt"); //! our example of (ofstream) writing to file
+
+    if (!writeF) {
+        cout << "Error: Could not open file for writing." << endl;
+        return;
+    }
+
+    for (int i = 0; i < 2; ++i) {
+        writeF << "Player " << i + 1 << " Stats:" << endl;
+        writeF << "--------------------" << std::endl;
+        writeF << "Charecter Name: " << chars[i].getName() << endl;
+        writeF << "Pride Points: " << chars[i].getPridePoints() << endl;
+        writeF << "Stamina: " << chars[i].getStamina() << endl;
+        writeF << "Strength: " << chars[i].getStrength() << endl;
+        writeF << "Wisdom: " << chars[i].getWisdom() << endl;
+        writeF << "Path: " << chars[i].getPath() << std::endl;
+        writeF << endl;
+    }
+
+    writeF.close();
+    cout << "Player stats successfully written to 'player_stats.txt'." << endl;
+    cout << endl;
+}
+
+
+
 void Game::determineWinner(Player chars[]){
-    if(chars[0].getPridePoints() > chars[1].getPridePoints()){
+    if(chars[0].getPridePoints() > chars[1].getPridePoints()){ // !if else statements(4)
         cout<< "Player 1 Wins! :D" << endl;
+        cout << endl;
         cout<<"Player 1 stats:"<<endl;
         chars[0].printStats();
+        cout << endl;
         cout<<"Player 2 stats:"<<endl;
         chars[1].printStats();
+        cout << endl;
     }
     else if(chars[0].getPridePoints() < chars[1].getPridePoints()){
         cout<< "Player 2 Wins! :D" << endl;
+        cout << endl;
         cout<<"Player 1 stats:"<<endl;
         chars[0].printStats();
+        cout << endl;
         cout<<"Player 2 stats:"<<endl;
         chars[1].printStats();
+        cout << endl;
     }else{
         cout << "It's a Tie!!!" << endl;
+        cout << endl;
         cout<<"Player 1 stats:"<<endl;
         chars[0].printStats();
+        cout << endl;
         cout<<"Player 2 stats:"<<endl;
         chars[1].printStats();
+        cout << endl;
     }
 }
 

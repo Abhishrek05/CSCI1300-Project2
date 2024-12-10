@@ -6,16 +6,13 @@
 #include "Player.h"
 
 //comment showing where things are (reqs)
-//2 nested loops
-//6 total loops
-//6 if statements
-//class that has an array from another class 
-//if stream and ofstream
+//ofstream
 
 
 class Board
 {
 private:
+    //! 4 data members
     static const int _BOARD_SIZE = 52;
     Tile _tiles[2][_BOARD_SIZE];
     static const int _MAX_PLAYERS = 2;

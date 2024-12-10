@@ -8,9 +8,11 @@
 
 class Game{
     private:
-        Player player[2];
+        //! 4 data members
+        Player player[2]; //!example array of player objects in our Game class
         Board gameBoard;
         int currentTurn;
+        int path;
     public:
         Game(Player players[2], Board board, int turn);
         void chooseCharacters(Player player[], int playerIndex);
@@ -24,6 +26,7 @@ class Game{
         void run();
         void statsToPridePoints(Player chars[]);
         void bubbleSort(int arr[],int);
+        void writeStatsToFile(Player chars[]);
         
 };
 

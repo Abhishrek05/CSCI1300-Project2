@@ -12,6 +12,7 @@ using namespace std;
 
 class Player {
     private:
+        //! 4 data members
         string _name, currentAdvisor;
         int _strength, _stamina, _wisdom, _pride_points, _age;
         bool isOnPride;
