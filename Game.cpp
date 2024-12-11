@@ -98,31 +98,31 @@ void Game::chooseCharacters(Player player[], int playerIndex){
     }
     while(getline(file, line)) { //! loop(2)
         split(line, '|', arr, 6);
-        if(input == 1 && arr[0] == "Apollo") {
+        if(input == 1 && arr[0] == "Vishnu") {
             player[playerIndex].setName(arr[0]);
             player[playerIndex].setAge(stoi(arr[1]));
             player[playerIndex].setStrength(stoi(arr[2]));
             player[playerIndex].setStamina(stoi(arr[3]));
             player[playerIndex].setWisdom(stoi(arr[4]));
-        } else if(input == 2 && arr[0] == "Mane") {
+        } else if(input == 2 && arr[0] == "Shiva") {
             player[playerIndex].setName(arr[0]);
             player[playerIndex].setAge(stoi(arr[1]));
             player[playerIndex].setStrength(stoi(arr[2]));
             player[playerIndex].setStamina(stoi(arr[3]));
             player[playerIndex].setWisdom(stoi(arr[4]));
-        } else if(input == 3 && arr[0] == "Elsa") {
+        } else if(input == 3 && arr[0] == "Ganesha") {
             player[playerIndex].setName(arr[0]);
             player[playerIndex].setAge(stoi(arr[1]));
             player[playerIndex].setStrength(stoi(arr[2]));
             player[playerIndex].setStamina(stoi(arr[3]));
             player[playerIndex].setWisdom(stoi(arr[4]));
-        } else if(input == 4 && arr[0] == "Zuri") {
+        } else if(input == 4 && arr[0] == "Shanti") {
             player[playerIndex].setName(arr[0]);
             player[playerIndex].setAge(stoi(arr[1]));
             player[playerIndex].setStrength(stoi(arr[2]));
             player[playerIndex].setStamina(stoi(arr[3]));
             player[playerIndex].setWisdom(stoi(arr[4]));
-        } else if(input == 5 && arr[0] == "Roary") {
+        } else if(input == 5 && arr[0] == "Lakshmi") {
             player[playerIndex].setName(arr[0]);
             player[playerIndex].setAge(stoi(arr[1]));
             player[playerIndex].setStrength(stoi(arr[2]));

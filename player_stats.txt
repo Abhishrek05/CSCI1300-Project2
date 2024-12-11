@@ -1,18 +1,18 @@
 Player 1 Stats:
 --------------------
-Charecter Name: Mane
-Pride Points: 26100
-Stamina: 400
-Strength: 1300
-Wisdom: 1000
+Charecter Name: Vishnu
+Pride Points: 25800
+Stamina: 300
+Strength: 1200
+Wisdom: 1700
 Path: 0
 
 Player 2 Stats:
 --------------------
-Charecter Name: Elsa
-Pride Points: 23700
-Stamina: 1700
-Strength: 1900
-Wisdom: 1500
+Charecter Name: Shiva
+Pride Points: 24000
+Stamina: 1200
+Strength: 1800
+Wisdom: 2500
 Path: 0
 
