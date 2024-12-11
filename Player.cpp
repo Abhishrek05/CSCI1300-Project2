@@ -1,3 +1,4 @@
+//Abhishek Sachi, Bhargav Sairam
 /* Player.cpp Pseudocode: 
  1.initializes the stats
  2. check player stats to ensure they are the correct number and then set their values to a variable to use in this file.  
