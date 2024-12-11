@@ -186,14 +186,16 @@ void Game::displayMainMenu(Player chars[]) {
                     cin >> reponse;
 
                     if(reponse == "Y" || reponse == "y"){
+                        cout<<chars[currentTurn].getPridePoints()<<endl;
                         int total2 = 0;
-                        total2 += chars[currentTurn].getPridePoints() + chars[currentTurn].getStamina() + chars[currentTurn].getStrength() + chars[currentTurn].getWisdom();
+                        total2 += chars[currentTurn].getPridePoints() + ((chars[currentTurn].getStamina() / 100) * 1000) + ((chars[currentTurn].getStrength() / 100) * 1000) + ((chars[currentTurn].getWisdom() / 100) * 1000);
 
                         chars[currentTurn].setPridePoints(total2);
 
                         chars[currentTurn].setStrength(100);
                         chars[currentTurn].setStamina(100);
                         chars[currentTurn].setWisdom(100);
+                        cout<<chars[currentTurn].getPridePoints()<<endl;
                         
                     }
                     else{
@@ -381,9 +383,9 @@ void Game::statsToPridePoints(Player chars[]) {
     int total1 = 0;
     int total2 = 0;
 
-    total1 += chars[0].getPridePoints() + chars[0].getStamina() + chars[0].getStrength() + chars[0].getWisdom();
+    total1 += chars[0].getPridePoints() + ((chars[0].getStamina() / 100) * 1000) + ((chars[0].getStrength() / 100) * 1000) + ((chars[0].getWisdom() / 100) * 1000);
 
-    total2 += chars[1].getPridePoints() + chars[1].getStamina() + chars[1].getStrength() + chars[1].getWisdom();
+    total2 += chars[1].getPridePoints() + ((chars[1].getStamina() / 100) * 1000) + ((chars[1].getStrength() / 100) * 1000) + ((chars[1].getWisdom() / 100) * 1000);
 
     chars[0].setPridePoints(total1);
     chars[1].setPridePoints(total2);
