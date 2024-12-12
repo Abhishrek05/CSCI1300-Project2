@@ -1,3 +1,7 @@
 CSCI 1300 Project 2
 
 Contributors: Bhargav Sairam, Abishek Sachi 
+
+How to Run Code:
+1. g++ -o program Driver.cpp Board.cpp Player.cpp Game.cpp
+2. ./program
