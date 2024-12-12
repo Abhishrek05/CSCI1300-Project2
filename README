@@ -3,5 +3,5 @@ CSCI 1300 Project 2
 Contributors: Bhargav Sairam, Abishek Sachi 
 
 How to Run Code:
-1. g++ -o program Driver.cpp Board.cpp Player.cpp Game.cpp
-2. ./program
+1. g++ -Wall -Werror -Wpedantic -o runner -std=c++17 Driver.cpp Board.cpp Player.cpp Game.cpp
+2. ./runner
